@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مغامرة الإنجليزي – الصف الرابع</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF5F9; --bg2:#E3F0EC; --card:#FFFFFF; --ink:#26405A; --ink2:#5E7489; --line:rgba(38,64,90,.09);
+  --teal:#2E9C8E; --tealSoft:#D6F1EB; --sun:#FFD36B; --sunSoft:#FFF4CF; --coral:#F79A86; --ok:#39B786; --okSoft:#DDF5EA;
+  --bad:#EE7280; --badSoft:#FCE3E6; --shadow:0 22px 44px -24px rgba(38,64,90,.35), 0 2px 6px -2px rgba(38,64,90,.08);
+  --ease:cubic-bezier(.32,.72,0,1); --spring:cubic-bezier(.34,1.56,.64,1);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#15212C; --bg2:#172A2A; --card:#1E2E3C; --ink:#EAF2F8; --ink2:#A9BBCB; --line:rgba(234,242,248,.1);
+    --tealSoft:#1F4540; --sunSoft:#4A3F1C; --okSoft:#1C4234; --badSoft:#4B2229; --shadow:0 22px 44px -24px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15212C; --bg2:#172A2A; --card:#1E2E3C; --ink:#EAF2F8; --ink2:#A9BBCB; --line:rgba(234,242,248,.1);
+  --tealSoft:#1F4540; --sunSoft:#4A3F1C; --okSoft:#1C4234; --badSoft:#4B2229; --shadow:0 22px 44px -24px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;min-height:100dvh;font-family:'Baloo Bhaijaan 2',Tahoma,'Segoe UI',system-ui,sans-serif;color:var(--ink);
+  background:radial-gradient(1200px 600px at 110% -10%, var(--bg2), transparent 60%),radial-gradient(900px 500px at -10% 20%, color-mix(in srgb,var(--sun) 18%,transparent), transparent 60%),var(--bg);
+  font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.en{direction:ltr;unicode-bidi:isolate;font-family:'Baloo Bhaijaan 2','Trebuchet MS',system-ui,sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+img,svg{max-width:100%}
+
+/* top island nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:center;padding:14px 12px 0}
+.nav-in{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:999px;background:color-mix(in srgb,var(--card) 82%,transparent);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:var(--shadow);border:1px solid var(--line)}
+.nav .logo{display:flex;align-items:center;gap:8px;padding:2px 10px 2px 6px;font-weight:800;font-size:17px}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;background:var(--sunSoft);font-weight:700;font-size:15px}
+.iconbtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--bg);font-size:19px;transition:transform .5s var(--spring)}
+.iconbtn:active{transform:scale(.9)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;padding:44px 0 28px}
+.hero h1{font-size:clamp(34px,5.4vw,58px);line-height:1.08;margin:0 0 10px;font-weight:800;letter-spacing:-.5px}
+.hero h1 .en{display:block;font-size:.5em;color:var(--teal);font-weight:700;margin-top:8px}
+.hero p{color:var(--ink2);margin:0 0 18px;max-width:46ch}
+.namebox{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.namebox input{font:inherit;padding:10px 16px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);min-width:0;width:200px}
+.namebox input:focus{outline:none;border-color:var(--teal)}
+.mascot-wrap{position:relative;display:grid;place-items:center}
+.mascot{width:min(300px,80%);animation:bob 4s var(--ease) infinite}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+.bubble{position:absolute;top:4%;inset-inline-start:0;background:var(--card);padding:10px 16px;border-radius:22px 22px 22px 6px;box-shadow:var(--shadow);font-weight:700;font-size:16px;max-width:210px}
+.progress-card{margin-top:18px;background:var(--card);border-radius:24px;padding:14px 18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;max-width:460px}
+.bar{flex:1;height:14px;border-radius:99px;background:var(--bg);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),#6FD1BF);transform-origin:right;transition:transform 1s var(--ease)}
+
+/* section titles */
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:34px 0 16px;flex-wrap:wrap}
+.sec-title h2{margin:0;font-size:28px;font-weight:800}
+.sec-title span{color:var(--ink2);font-size:16px}
+
+/* unit path */
+.path{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+.ucard{grid-column:span 4;position:relative;text-align:start;border-radius:30px;padding:6px;background:color-mix(in srgb,var(--u) 45%,transparent);
+  transition:transform .6s var(--spring)}
+.ucard:hover{transform:translateY(-4px) rotate(-.6deg)}
+.ucard:active{transform:scale(.97)}
+.ucard .core{border-radius:24px;background:var(--card);padding:18px 18px 16px;height:100%;display:flex;flex-direction:column;gap:6px;box-shadow:var(--shadow)}
+.ucard .top{display:flex;justify-content:space-between;align-items:center}
+.ucard .emo{font-size:44px;line-height:1;width:72px;height:72px;border-radius:22px;display:grid;place-items:center;background:color-mix(in srgb,var(--u) 55%,var(--card))}
+.ucard .num{font-weight:800;font-size:14px;color:var(--ink2);background:var(--bg);padding:3px 12px;border-radius:99px}
+.ucard h3{margin:6px 0 0;font-size:22px;line-height:1.2}
+.ucard .sub{color:var(--ink2);font-size:15px}
+.stars{display:flex;gap:2px;font-size:20px;letter-spacing:1px}
+.stars .off{filter:grayscale(1);opacity:.3}
+.ucard.wide{grid-column:span 6}
+.ucard.final{grid-column:span 12;background:linear-gradient(120deg,#FFE08A,#FFC6B5,#C9E8FF)}
+.ucard.final .core{flex-direction:row;align-items:center;gap:18px}
+.ucard.final .emo{background:var(--sunSoft);font-size:52px;width:90px;height:90px}
+
+/* unit page */
+.uhead{margin:26px 0 8px;border-radius:34px;padding:6px;background:color-mix(in srgb,var(--u) 50%,transparent)}
+.uhead .core{border-radius:28px;background:linear-gradient(135deg,color-mix(in srgb,var(--u) 45%,var(--card)),var(--card));padding:24px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.uhead .emo{font-size:60px;line-height:1}
+.uhead h1{margin:0;font-size:clamp(26px,4vw,40px);line-height:1.15}
+.uhead p{margin:4px 0 0;color:var(--ink2)}
+.back{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:99px;background:var(--card);box-shadow:var(--shadow);font-weight:700;margin-top:22px}
+.tabs{display:flex;gap:8px;margin:20px 0 6px;background:var(--card);padding:6px;border-radius:999px;box-shadow:var(--shadow);width:max-content;max-width:100%;overflow-x:auto}
+.tab{padding:10px 20px;border-radius:999px;font-weight:700;white-space:nowrap;transition:background .5s var(--ease),transform .5s var(--spring)}
+.tab.on{background:var(--u);color:#1f3346}
+.tab:active{transform:scale(.95)}
+
+.block{background:var(--card);border-radius:28px;padding:22px;box-shadow:var(--shadow);margin:18px 0}
+.block h3{margin:0 0 4px;font-size:23px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tag{font-size:13px;font-weight:700;padding:2px 10px;border-radius:99px;background:var(--bg);color:var(--ink2)}
+.tag.book{background:var(--tealSoft);color:var(--teal)}
+
+/* vocab */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.vcard{perspective:800px;height:150px}
+.vcard .in{position:relative;width:100%;height:100%;transition:transform .7s var(--spring);transform-style:preserve-3d}
+.vcard.flip .in{transform:rotateY(180deg)}
+.vface{position:absolute;inset:0;border-radius:22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;backface-visibility:hidden;-webkit-backface-visibility:hidden;padding:10px;text-align:center}
+.vface.f{background:color-mix(in srgb,var(--u) 38%,var(--card))}
+.vface.b{background:var(--sunSoft);transform:rotateY(180deg)}
+.vface .e{font-size:42px;line-height:1.1}
+.vface .w{font-weight:800;font-size:18px;line-height:1.2}
+.vface .ar{font-size:19px;font-weight:700}
+.vhint{font-size:14px;color:var(--ink2);margin-top:4px}
+
+/* grammar */
+.bi{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.bi > div{border-radius:20px;padding:14px 16px}
+.bi .arx{background:var(--tealSoft)}
+.bi .enx{background:var(--sunSoft);text-align:left}
+.bi h4{margin:0 0 4px;font-size:15px;color:var(--ink2);font-weight:700}
+.ex-list{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.ex{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:16px;padding:8px 12px}
+.ex .en{flex:1;font-weight:600;text-align:left}
+.ex .ar2{color:var(--ink2);font-size:15px}
+.say{width:38px;height:38px;flex:none;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:17px;box-shadow:0 4px 10px -6px rgba(0,0,0,.3);transition:transform .4s var(--spring)}
+.say:active{transform:scale(.85)}
+table.tt{border-collapse:collapse;width:100%;min-width:360px;font-size:16px;direction:ltr}
+.tt td,.tt th{padding:6px 10px;text-align:left;border-bottom:1px solid var(--line)}
+.tt th{color:var(--ink2);font-weight:700}
+.scroll{overflow-x:auto}
+.mini{margin-top:14px;border:2px dashed var(--line);border-radius:20px;padding:14px}
+.mini .q{font-weight:700;margin-bottom:8px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{padding:10px 18px;border-radius:999px;background:var(--bg);font-weight:700;transition:transform .45s var(--spring),background .3s var(--ease)}
+.opt:hover{transform:translateY(-2px)}
+.opt.ok{background:var(--ok);color:#fff}
+.opt.no{background:var(--bad);color:#fff;animation:shake .45s}
+@keyframes shake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.fb{margin-top:8px;font-weight:600;font-size:16px}
+
+/* games grid */
+.ggrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;margin-top:18px}
+.gcard{border-radius:28px;padding:6px;background:color-mix(in srgb,var(--u) 40%,transparent);text-align:start;transition:transform .55s var(--spring)}
+.gcard:hover{transform:translateY(-4px) rotate(.8deg)}
+.gcard .core{background:var(--card);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:4px;height:100%;box-shadow:var(--shadow)}
+.gcard .e{font-size:40px}
+.gcard b{font-size:20px}
+.gcard small{color:var(--ink2);font-size:15px}
+.done{align-self:flex-start;font-size:13px;font-weight:800;padding:2px 10px;border-radius:99px;background:var(--okSoft);color:var(--ok)}
+
+/* overlay */
+.ov{position:fixed;inset:0;z-index:40;background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:calc(env(safe-area-inset-top,0px) + 16px) 12px calc(env(safe-area-inset-bottom,0px) + 16px);opacity:0;transition:opacity .5s var(--ease)}
+.ov.show{opacity:1}
+.panel{width:min(760px,100%);background:var(--card);border-radius:32px;box-shadow:var(--shadow);padding:20px;transform:translateY(30px) scale(.97);transition:transform .7s var(--spring);margin:auto 0}
+.ov.show .panel{transform:none}
+.phead{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:10px}
+.phead h2{margin:0;font-size:22px}
+.hearts{font-size:20px;letter-spacing:2px}
+.gbar{height:10px;border-radius:99px;background:var(--bg);overflow:hidden;margin:6px 0 16px}
+.gbar i{display:block;height:100%;background:var(--u,var(--teal));transition:transform .6s var(--ease);transform-origin:right}
+.prompt{min-height:120px;border-radius:24px;background:color-mix(in srgb,var(--u,var(--tealSoft)) 30%,var(--card));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:18px;text-align:center;font-size:22px;font-weight:700}
+.prompt .big{font-size:64px;line-height:1}
+.prompt .en{font-size:24px}
+.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+.choice{padding:16px 12px;border-radius:22px;background:var(--bg);font-weight:800;font-size:20px;min-height:66px;transition:transform .45s var(--spring),background .3s var(--ease);box-shadow:inset 0 -4px 0 rgba(38,64,90,.08)}
+.choice:hover{transform:translateY(-3px)}
+.choice:active{transform:scale(.96)}
+.choice.ok{background:var(--ok);color:#fff}
+.choice.no{background:var(--bad);color:#fff;animation:shake .45s}
+.choice[disabled]{cursor:default}
+.explain{margin-top:14px;border-radius:18px;padding:12px 16px;font-weight:600;font-size:17px}
+.explain.good{background:var(--okSoft)}
+.explain.oops{background:var(--badSoft)}
+.pfoot{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:16px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:8px 8px 8px 20px;border-radius:999px;background:var(--teal);color:#fff;font-weight:800;font-size:18px;transition:transform .5s var(--spring)}
+[dir="rtl"] .cta{padding:8px 20px 8px 8px}
+.cta .ic{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;transition:transform .5s var(--spring)}
+.cta:hover .ic{transform:translateX(-3px) scale(1.06)}
+.cta:active{transform:scale(.97)}
+.cta.soft{background:var(--bg);color:var(--ink)}
+.cta.soft .ic{background:var(--card)}
+.cta.sun{background:var(--sun);color:#3a2d00}
+
+/* memory */
+.mgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mc{aspect-ratio:1/1;perspective:600px}
+.mc .in{position:relative;width:100%;height:100%;transition:transform .6s var(--spring);transform-style:preserve-3d}
+.mc.open .in,.mc.got .in{transform:rotateY(180deg)}
+.mc .fa{position:absolute;inset:0;border-radius:18px;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;text-align:center;padding:6px;font-weight:800;font-size:clamp(13px,2.6vw,18px);line-height:1.15}
+.mc .fr{background:color-mix(in srgb,var(--u) 60%,var(--card));font-size:30px}
+.mc .bk{background:var(--sunSoft);transform:rotateY(180deg)}
+.mc .bk .emo2{font-size:clamp(28px,6vw,44px)}
+.mc.got .bk{background:var(--okSoft)}
+
+/* sort */
+.sitem{display:inline-block;padding:14px 26px;border-radius:22px;background:var(--card);font-size:24px;font-weight:800;box-shadow:var(--shadow);animation:pop .55s var(--spring)}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+.buckets{display:grid;gap:12px;margin-top:16px}
+.bucket{border-radius:24px;padding:14px;background:var(--bg);font-weight:800;font-size:19px;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:110px;transition:transform .45s var(--spring),background .3s var(--ease)}
+.bucket .be{font-size:34px}
+.bucket .cnt{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;font-size:13px;font-weight:600}
+.bucket .cnt span{background:var(--card);padding:0 8px;border-radius:99px}
+.bucket.flash{background:var(--okSoft);transform:scale(1.04)}
+.bucket.wrong{background:var(--badSoft);animation:shake .45s}
+
+/* build */
+.slot{min-height:70px;border-radius:22px;border:2px dashed var(--line);padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;direction:ltr;margin-top:14px}
+.slot.ok{border-color:var(--ok);background:var(--okSoft)}
+.slot.no{border-color:var(--bad);animation:shake .45s}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;direction:ltr;justify-content:center}
+.chip{padding:10px 16px;border-radius:16px;background:color-mix(in srgb,var(--u) 45%,var(--card));font-weight:800;font-size:20px;animation:pop .45s var(--spring);box-shadow:inset 0 -3px 0 rgba(38,64,90,.1)}
+.chip.used{visibility:hidden}
+
+/* results */
+.result{text-align:center;padding:10px 0}
+.result .big{font-size:80px;line-height:1;animation:pop .8s var(--spring)}
+.result h2{margin:8px 0 2px;font-size:30px}
+.result .stars{justify-content:center;font-size:40px;margin:8px 0}
+.review{text-align:start;margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.review div{background:var(--badSoft);border-radius:14px;padding:8px 12px;font-size:16px}
+
+/* confetti */
+.conf{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden}
+.conf i{position:absolute;top:-20px;width:12px;height:16px;border-radius:3px;animation:fall 2.4s var(--ease) forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.7}}
+
+.cert{border-radius:28px;padding:6px;background:linear-gradient(120deg,#FFE08A,#FFC6B5,#C9E8FF);margin-top:14px}
+.cert .core{background:var(--card);border-radius:22px;padding:22px;text-align:center}
+.cert h3{margin:0;font-size:26px}
+.cert .nm{font-size:34px;font-weight:800;color:var(--teal)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+.foot{text-align:center;color:var(--ink2);font-size:14px;margin-top:40px}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;padding-top:24px}
+  .mascot-wrap{order:-1}.mascot{width:190px}
+  .bubble{position:static;margin-bottom:8px}
+  .ucard,.ucard.wide{grid-column:span 12!important}
+  .ucard:hover{transform:none}
+  .bi{grid-template-columns:1fr}
+  .mgrid{grid-template-columns:repeat(3,1fr)}
+  .nav .logo span.t{display:none}
+}
+@media (max-width:480px){ .choices{grid-template-columns:1fr} .choice{font-size:18px} body{font-size:17px} }
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <button class="logo" onclick="location.hash='#/'" aria-label="الرئيسية"><span style="font-size:26px">🐢</span><span class="t">مغامرة الإنجليزي</span></button>
+  <span class="pill" title="نجومك">⭐ <b id="starCount">0</b></span>
+  <button class="iconbtn" id="sndBtn" onclick="toggleSound()" aria-label="الصوت">🔊</button>
+  <button class="iconbtn" id="themeBtn" onclick="toggleTheme()" aria-label="الوضع الليلي">🌙</button>
+</div></nav>
+<main class="wrap" id="app"></main>
+<div id="ovRoot"></div>
+
+<script>
+/* ============ DATA ============ */
+const UNITS = [
+{
+ id:"welcome", num:"W", color:"#BFE3F7", emoji:"👋", title:"New neighbours", ar:"جيران جدد", pages:"ص 10–13",
+ intro:"نتعرّف على الدول والجنسيات والهوايات والأرقام من 50 إلى 100.",
+ vocab:[
+  {g:"Countries & nationalities – الدول والجنسيات", items:[
+   ["🇴🇲","Oman – Omani","عُمان – عُماني"],["🇦🇺","Australia – Australian","أستراليا – أسترالي"],["🇨🇳","China – Chinese","الصين – صيني"],
+   ["🇬🇧","Britain – British","بريطانيا – بريطاني"],["🇧🇷","Brazil – Brazilian","البرازيل – برازيلي"],["🇪🇬","Egypt – Egyptian","مصر – مصري"],["🇺🇸","the USA – American","أمريكا – أمريكي"]]},
+  {g:"Hobbies – الهوايات", items:[
+   ["🛶","canoeing","التجديف بالقارب"],["📖","reading","القراءة"],["🏓","playing table tennis","تنس الطاولة"],["⚽","playing football","كرة القدم"],
+   ["🛍️","going shopping","التسوّق"],["🎾","playing tennis","التنس"],["🏀","playing basketball","كرة السلة"],["🏊","swimming","السباحة"]]},
+  {g:"Numbers – الأرقام", items:[
+   ["5️⃣0️⃣","fifty","خمسون 50"],["5️⃣5️⃣","fifty-five","خمسة وخمسون 55"],["6️⃣0️⃣","sixty","ستون 60"],["7️⃣0️⃣","seventy","سبعون 70"],
+   ["8️⃣0️⃣","eighty","ثمانون 80"],["9️⃣0️⃣","ninety","تسعون 90"],["💯","one hundred","مئة 100"],["➕➖","plus / minus / equals","زائد / ناقص / يساوي"]]}
+ ],
+ grammar:[
+  {t:"Where are you from?", tar:"من أين أنت؟", page:"ص 11",
+   ar:"نسأل عن البلد بـ <b class='en'>Where are you from?</b> ونجيب: <b class='en'>I'm from</b> + البلد. وإذا أردنا الجنسية نقول <b class='en'>I'm</b> + الجنسية. انتبه: البلد والجنسية يبدآن دائماً بحرف كبير!",
+   en:"Ask: <b>Where are you from?</b> Answer with a country: <b>I'm from Oman.</b> Say your nationality: <b>I'm Omani.</b> Countries and nationalities start with a capital letter.",
+   ex:[["Where are you from?","من أين أنت؟"],["I'm from Oman. I'm Omani.","أنا من عُمان. أنا عُماني."],["Where's she from? She's from Britain. She's British.","من أين هي؟ هي من بريطانيا. هي بريطانية."],["I'm from Melbourne, in Australia. I'm Australian!","أنا من ملبورن في أستراليا. أنا أسترالية! (لوتي في القصة)"]],
+   mini:{q:"He's from Egypt. He's ____.", o:["Egypt","Egyptian","Egyptians"], a:"Egyptian", ex:"بعد He's نضع الجنسية: Egyptian."}},
+  {t:"like / likes + -ing", tar:"يحب + الفعل مع ing", page:"ص 12",
+   ar:"بعد <b class='en'>like</b> نضيف <b class='en'>ing</b> للفعل: <span class='en'>swim → swimming</span>. مع <b class='en'>he / she</b> نضيف <b class='en'>s</b> على like فتصبح <b class='en'>likes</b>. والنفي: <b class='en'>I don't like</b> و <b class='en'>She doesn't like</b>.",
+   en:"After <b>like</b> use verb + <b>-ing</b>. With <b>he/she</b> add <b>s</b>: She <b>likes</b> swimming. Negative: I <b>don't</b> like / He <b>doesn't</b> like.",
+   ex:[["I like playing basketball.","أحب لعب كرة السلة."],["She likes swimming, too!","هي تحب السباحة أيضاً!"],["I don't like tennis.","لا أحب التنس."],["Sami doesn't like reading.","سامي لا يحب القراءة."]],
+   mini:{q:"Fatma ____ reading.", o:["like","likes","liking"], a:"likes", ex:"Fatma = she، لذلك نضيف s: likes."}},
+  {t:"Numbers 50–100", tar:"الأرقام من 50 إلى 100", page:"ص 13",
+   ar:"نعدّ بالعشرات: <span class='en'>fifty, sixty, seventy, eighty, ninety, one hundred</span>. وبين العشرات نضع شَرطة: <span class='en'>fifty-one, fifty-two …</span>. وفي الحساب: <span class='en'>plus</span> = زائد، <span class='en'>minus</span> = ناقص، <span class='en'>equals</span> = يساوي.",
+   en:"Count in tens: fifty, sixty … one hundred. Use a hyphen: fifty-seven. Maths words: plus (+), minus (–), equals (=).",
+   ex:[["Fifty-five minus two equals fifty-three.","55 − 2 = 53"],["Fifty, fifty-one, fifty-two … sixty!","50، 51، 52 … 60"],["Seventy plus ten equals eighty.","70 + 10 = 80"]],
+   mini:{q:"58 = ?", o:["fifty-eight","eighty-five","fifteen-eight"], a:"fifty-eight", ex:"نقرأ العشرات أولاً ثم الآحاد: fifty-eight."}}
+ ],
+ games:[
+  {type:"match", e:"🧩", t:"Flag match", tar:"طابق البلد مع الجنسية", pairs:[["Oman","Omani"],["China","Chinese"],["Britain","British"],["Brazil","Brazilian"],["Egypt","Egyptian"],["the USA","American"]]},
+  {type:"pick", e:"👂", t:"Number listening", tar:"اسمع واختر الرقم", items:[
+    {say:"fifty-seven",o:["57","75","47"],a:"57"},{say:"ninety",o:["90","19","9"],a:"90"},{say:"fifty-three",o:["53","35","63"],a:"53"},
+    {say:"seventy",o:["70","17","60"],a:"70"},{say:"fifty-nine",o:["59","95","49"],a:"59"},{say:"one hundred",o:["100","10","1000"],a:"100"},
+    {say:"eighty",o:["80","18","88"],a:"80"},{say:"fifty-four",o:["54","45","44"],a:"54"},{p:"<span class='en'>55 − 2 = ?</span>",o:["fifty-three","fifty-seven","sixty"],a:"fifty-three"}]},
+  {type:"build", e:"🧱", t:"Sentence builder", tar:"رتّب الجملة", items:[
+    ["Where are you from?","من أين أنت؟"],["I'm from Oman.","أنا من عُمان."],["She likes playing tennis.","هي تحب لعب التنس."],["I don't like swimming.","لا أحب السباحة."]]}
+ ],
+ quiz:[
+  {q:"Where are you from?", o:["I'm from Oman.","I'm Oman.","I like Oman."], a:"I'm from Oman.", ex:"السؤال عن البلد، فنجيب I'm from + البلد."},
+  {q:"Lottie is from Australia. She's ____.", o:["Australian","Australia","British"], a:"Australian", ex:"من أستراليا = Australian."},
+  {q:"He's from the USA. He's ____.", o:["American","USA","Americans"], a:"American", ex:"من أمريكا = American."},
+  {q:"She ____ swimming.", o:["likes","like","liking"], a:"likes", ex:"مع she نضيف s: likes."},
+  {q:"I ____ like tennis.", o:["don't","doesn't","not"], a:"don't", ex:"مع I نستخدم don't."},
+  {q:"<span class='en'>56</span> = ?", o:["fifty-six","sixty-five","fifteen-six"], a:"fifty-six", ex:"56 = fifty-six."},
+  {q:"Fifty-five minus two equals ____.", o:["fifty-three","fifty-seven","fifty-two"], a:"fifty-three", ex:"55 − 2 = 53 (من تمرين الكتاب ص 13)."},
+  {q:"📗 From the story: Sami is Fatma's brother.", o:["True","False"], a:"True", ex:"فاطمة قالت: this is my brother, Sami."},
+  {q:"📗 From the story: Sami is nine.", o:["True","False"], a:"False", ex:"سامي عمره ثماني سنوات (eight)، وفاطمة تسع سنوات."},
+  {q:"Which one is a hobby?", o:["canoeing","Egypt","ninety"], a:"canoeing", ex:"canoeing = التجديف، وهو هواية."}
+ ]
+},
+{
+ id:"u1", num:"1", color:"#C9EBD6", emoji:"🏫", title:"New school", ar:"مدرسة جديدة", pages:"ص 14–35",
+ intro:"المواد الدراسية، الوقت، كم مرة نفعل الأشياء، والمضارع البسيط.",
+ vocab:[
+  {g:"School subjects – المواد الدراسية", items:[
+   ["🔢","Maths","الرياضيات"],["🔬","Science","العلوم"],["✍️","Arabic","اللغة العربية"],["🕌","Islamic Studies","التربية الإسلامية"],["🔤","English","اللغة الإنجليزية"],
+   ["🌍","Social Studies","الدراسات الاجتماعية"],["🤸","P.E.","الرياضة البدنية"],["💻","ICT","تقنية المعلومات"],["🎨","Art","الفنون"]]},
+  {g:"People & places – أشخاص وأماكن", items:[["🧪","science lab","مختبر العلوم"],["👩‍🏫","headteacher","مديرة المدرسة"],["👩‍⚕️","school nurse","ممرضة المدرسة"]]},
+  {g:"How often? – كم مرة؟", items:[
+   ["✅✅✅","always","دائماً"],["✅✅","often","غالباً"],["✅","sometimes","أحياناً"],["❌","never","أبداً"],["📅","every day","كل يوم"],
+   ["1️⃣","once a week","مرة في الأسبوع"],["2️⃣","twice a week","مرتين في الأسبوع"],["3️⃣","three times a week","ثلاث مرات في الأسبوع"],["🏖️","at the weekend","في عطلة نهاية الأسبوع"]]}
+ ],
+ grammar:[
+  {t:"Telling the time", tar:"كيف نقول الوقت", page:"ص 18",
+   ar:"<span class='en'>o'clock</span> = الساعة تماماً • <span class='en'>quarter past</span> = وربع • <span class='en'>half past</span> = ونص • <span class='en'>quarter to</span> = إلا ربع.<br>مثال: 7:30 = <b class='en'>half past seven</b> و 9:45 = <b class='en'>quarter to ten</b> (لأنها قبل العاشرة بربع ساعة).",
+   en:"8:00 = eight o'clock • 11:15 = quarter past eleven • 10:30 = half past ten • 9:45 = quarter to ten.",
+   clocks:[[8,0,"eight o'clock"],[11,15,"quarter past eleven"],[10,30,"half past ten"],[9,45,"quarter to ten"]],
+   mini:{q:"🕡 6:30 = ?", o:["half past six","half past seven","quarter past six"], a:"half past six", ex:"الدقيقة 30 = half past، والساعة 6."}},
+  {t:"Present simple + days and times", tar:"المضارع البسيط مع الأيام والأوقات", page:"ص 18",
+   ar:"نستخدم المضارع البسيط للأشياء التي تتكرر (الجدول المدرسي). مع <b class='en'>I / you / we / they</b> نقول <b class='en'>have</b>، ومع <b class='en'>he / she</b> نقول <b class='en'>has</b> ونضيف <b class='en'>s</b> للفعل: <span class='en'>play → plays</span>.<br>النفي: <b class='en'>doesn't have</b> • السؤال: <b class='en'>When do we have Maths?</b><br>مع الأيام نستخدم <b class='en'>on</b> ومع الساعة نستخدم <b class='en'>at</b>.",
+   en:"Use the present simple for routines. I/we <b>have</b>, he/she <b>has</b>. Negative: <b>doesn't have</b>. Use <b>on</b> + day, <b>at</b> + time.",
+   ex:[["We have Maths on Tuesdays at half past ten.","عندنا رياضيات أيام الثلاثاء الساعة العاشرة والنصف."],["I have Science at quarter past eleven.","عندي علوم الساعة الحادية عشرة والربع."],["Azza doesn't have P.E. at quarter to ten on Wednesdays.","عزة ليس عندها رياضة الساعة العاشرة إلا ربع أيام الأربعاء."],["When do we have Maths?","متى عندنا رياضيات؟"]],
+   table:true,
+   mini:{q:"📗 Lottie's timetable: What does she do at quarter past eight on Sundays?", o:["She has Science.","She goes home.","She has Maths."], a:"She has Science.", ex:"في الجدول: 8:15 Science."}},
+  {t:"Adverbs of frequency", tar:"كلمات التكرار (كم مرة؟)", page:"ص 19",
+   ar:"كلمات <span class='en'>always, often, sometimes, never</span> تأتي <b>قبل الفعل</b>: <span class='en'>He always eats fish.</span> لكن تأتي <b>بعد</b> <span class='en'>is / am / are</span>: <span class='en'>She is always busy.</span><br>أما عبارات <span class='en'>every day, twice a week, once a week, at the weekend</span> فتأتي في <b>آخر الجملة</b>.",
+   en:"<b>always / often / sometimes / never</b> go <b>before</b> the main verb but <b>after</b> be. Phrases like <b>twice a week</b> go at the end.",
+   ex:[["She plays tennis twice a week.","هي تلعب التنس مرتين في الأسبوع."],["I do my homework every day.","أحل واجبي كل يوم."],["She is always busy.","هي دائماً مشغولة."],["He always eats fish for lunch.","هو دائماً يأكل السمك على الغداء."]],
+   mini:{q:"Choose the correct sentence:", o:["He is always busy.","He always is busy.","Always he is busy."], a:"He is always busy.", ex:"always تأتي بعد is."}},
+  {t:"Making arrangements", tar:"الاتفاق على موعد", page:"ص 21",
+   ar:"لندعو صديقاً نقول <b class='en'>Do you want to …?</b> وللرفض بلطف: <b class='en'>Sorry, I can't.</b> أو <b class='en'>I'm not free.</b> ونقترح موعداً آخر: <b class='en'>What about Saturday?</b> ثم نتفق: <b class='en'>Let's meet at …</b>",
+   en:"Invite: <b>Do you want to play football tomorrow?</b> Say no politely: <b>Sorry, I can't.</b> Suggest: <b>What about Saturday?</b> Agree: <b>Let's meet at quarter to five in the park.</b>",
+   ex:[["Do you want to play football tomorrow morning?","هل تريد أن نلعب كرة قدم صباح الغد؟"],["Sorry, I can't. I go swimming on Friday mornings.","آسف، لا أستطيع. أذهب للسباحة صباح الجمعة."],["Let's meet at quarter to five in the park.","لنلتقِ الساعة الخامسة إلا ربع في الحديقة."]]},
+  {t:"Phonics: long i", tar:"صوت الـ i الطويل", page:"ص 24",
+   ar:"هذه الحروف كلها تُنطق مثل <b class='en'>ai</b> في كلمة <span class='en'>my</span>: <b class='en'>y</b> (fly, my, shy) • <b class='en'>ie</b> (pie) • <b class='en'>igh</b> (night) • <b class='en'>i-e</b> (kite). في i-e حرف e في الآخر لا يُنطق لكنه يجعل i طويلة!",
+   en:"y, ie, igh and i-e all make the long /aɪ/ sound: fly, pie, night, kite.",
+   ex:[["Every night, I eat a pie and fly a kite.","كل ليلة آكل فطيرة وأطيّر طائرة ورقية."],["my, fly, shy","ي في الآخر"],["light, right, night","igh"]],
+   mini:{q:"Which word has the same sound as <span class='en'>night</span>?", o:["fly","fish","sit"], a:"fly", ex:"fly و night فيهما صوت i الطويل."}},
+  {t:"Writing tip", tar:"نصيحة الكتابة", page:"ص 23",
+   ar:"ابدأ كل جملة بـ <b>حرف كبير</b> واكتب أسماء المواد بحرف كبير (<span class='en'>Maths, Science</span>) وضع <b>نقطة</b> في آخر الجملة.",
+   en:"Use a capital letter at the start of each sentence and for subject names. End with a full stop.",
+   ex:[["My favourite lesson is English.","درسي المفضل هو الإنجليزي."],["I like it because we play games.","أحبه لأننا نلعب ألعاباً."]]}
+ ],
+ games:[
+  {type:"sort", e:"🗂️", t:"School sort", tar:"صنّف: مواد، أشخاص، أماكن", buckets:[["sub","School subjects","📚"],["ppl","People","🧑‍🏫"],["plc","Places","🏫"]],
+   items:[["Maths","sub"],["ICT","sub"],["Art","sub"],["Science","sub"],["P.E.","sub"],["headteacher","ppl"],["school nurse","ppl"],["teacher","ppl"],["science lab","plc"],["classroom","plc"],["library","plc"]]},
+  {type:"pick", e:"⏰", t:"Clock challenge", tar:"اقرأ الساعة", items:[
+    {clock:[7,30],o:["half past seven","quarter past seven","seven o'clock"],a:"half past seven"},
+    {clock:[11,15],o:["quarter past eleven","quarter to eleven","half past eleven"],a:"quarter past eleven"},
+    {clock:[9,45],o:["quarter to ten","quarter past nine","quarter to nine"],a:"quarter to ten"},
+    {clock:[2,0],o:["two o'clock","twelve o'clock","half past two"],a:"two o'clock"},
+    {clock:[4,30],o:["half past four","half past five","four o'clock"],a:"half past four"},
+    {clock:[8,15],o:["quarter past eight","quarter to eight","eight fifteen past"],a:"quarter past eight"},
+    {clock:[4,45],o:["quarter to five","quarter to four","quarter past five"],a:"quarter to five"}]},
+  {type:"pick", e:"🪁", t:"Phonics kite", tar:"أكمل الكلمة بالحروف الصحيحة", items:[
+    {p:"🪰 <span class='en'>fl__</span>",o:["y","igh","ie"],a:"y"},{p:"🌙 <span class='en'>n__t</span>",o:["igh","y","ie"],a:"igh"},{p:"🥧 <span class='en'>p__</span>",o:["ie","igh","i-e"],a:"ie"},
+    {p:"🪁 <span class='en'>k_t_</span>",o:["i-e","igh","y"],a:"i-e"},{p:"💡 <span class='en'>l__t</span>",o:["igh","ie","y"],a:"igh"},{p:"🙈 <span class='en'>sh__</span>",o:["y","igh","i-e"],a:"y"},{p:"🚲 <span class='en'>b_k_</span>",o:["i-e","ie","y"],a:"i-e"}]},
+  {type:"build", e:"🧱", t:"Sentence builder", tar:"رتّب الجملة", items:[
+    ["She plays tennis twice a week.","هي تلعب التنس مرتين في الأسبوع."],["We have Maths on Tuesdays.","عندنا رياضيات أيام الثلاثاء."],["I do my homework every day.","أحل واجبي كل يوم."],["Do you want to play football?","هل تريد أن تلعب كرة القدم؟"]]},
+  {type:"match", e:"🧩", t:"Subject memory", tar:"ذاكرة: الكلمة وصورتها", pairs:[["Maths","🔢"],["Science","🔬"],["Art","🎨"],["ICT","💻"],["P.E.","🤸"],["school nurse","👩‍⚕️"]]}
+ ],
+ quiz:[
+  {q:"What time is it?", clock:[7,30], o:["half past seven","quarter past seven","half past six"], a:"half past seven", ex:"العقرب الكبير على 6 = half past."},
+  {q:"What time is it?", clock:[9,45], o:["quarter to ten","quarter past nine","quarter to nine"], a:"quarter to ten", ex:"9:45 = العاشرة إلا ربع = quarter to ten."},
+  {q:"She ____ tennis twice a week.", o:["plays","play","playing"], a:"plays", ex:"she + الفعل + s."},
+  {q:"Azza ____ have P.E. on Wednesdays.", o:["doesn't","don't","isn't"], a:"doesn't", ex:"النفي مع she/he = doesn't."},
+  {q:"We have English ____ Sundays ____ eight o'clock.", o:["on / at","at / on","in / at"], a:"on / at", ex:"on + اليوم، at + الساعة."},
+  {q:"Choose the correct sentence:", o:["She is always busy.","She always is busy.","She is busy always."], a:"She is always busy.", ex:"always بعد is."},
+  {q:"✔ on Monday and ✔ on Wednesday = ____", o:["twice a week","once a week","every day"], a:"twice a week", ex:"يومين في الأسبوع = مرتين."},
+  {q:"Who helps you at school when you feel ill?", o:["school nurse","headteacher","Art teacher"], a:"school nurse", ex:"ممرضة المدرسة تساعد المريض."},
+  {q:"📗 Maryam's diary: How does Maryam feel before her first day?", o:["worried","happy","angry"], a:"worried", ex:"مريم كانت قلقة (worried) قبل يومها الأول."},
+  {q:"📗 Maryam's diary: What is the name of her new friend?", o:["Muna","Zahra","Lottie"], a:"Muna", ex:"صديقتها الجديدة اسمها منى."},
+  {q:"Do you want to play football tomorrow? — ____ I go swimming on Fridays.", o:["Sorry, I can't.","Yes, let's go!","See you then!"], a:"Sorry, I can't.", ex:"بعدها يقول إنه يذهب للسباحة، إذن يعتذر."},
+  {q:"Which word has the same sound as <span class='en'>kite</span>?", o:["night","kit","sit"], a:"night", ex:"i-e و igh نفس الصوت الطويل."}
+ ]
+},
+{
+ id:"u2", num:"2", color:"#FFD9C4", emoji:"🧺", title:"Picnic time!", ar:"وقت النزهة", pages:"ص 36–57",
+ intro:"الأطعمة والمشروبات، العبوات، There is / There are، والتسوق.",
+ vocab:[
+  {g:"Food & drinks – الطعام والمشروبات", items:[
+   ["🍎","fruit","فواكه"],["🥕","vegetables","خضروات"],["🥪","sandwiches","سندويشات"],["🥣","cereal","رقائق الإفطار"],["🍜","noodles","نودلز"],["🥤","milkshake","ميلك شيك"],
+   ["🥔","crisps","شيبس (بطاطس مقرمشة)"],["🧁","cupcakes","كب كيك"],["🥗","salad","سلطة"],["🍵","tea","شاي"],["☕","coffee","قهوة"],["🍋","lemonade","عصير ليمون"]]},
+  {g:"Containers – العبوات", items:[
+   ["🥫","a can of lemonade","علبة ليمون"],["💧","a bottle of water","قنينة ماء"],["🍲","a bowl of soup","وعاء شوربة"],["☕","a cup of coffee","فنجان قهوة"],
+   ["🥛","a glass of milk","كأس حليب"],["🍽️","a plate of sandwiches","صحن سندويشات"],["📦","a box of cereal","علبة رقائق"],["🛍️","a bag of fruit","كيس فواكه"]]}
+ ],
+ grammar:[
+  {t:"There is / There are", tar:"يوجد", page:"ص 40",
+   ar:"<b class='en'>There is (There's)</b> مع الشيء المفرد أو الذي لا يُعدّ (مثل bread, salad, tea).<br><b class='en'>There are</b> مع الجمع (مثل noodles, cupcakes, apples).",
+   en:"<b>There's</b> + singular / uncountable. <b>There are</b> + plural.",
+   ex:[["There's some cheese.","يوجد بعض الجبن."],["There are a lot of noodles.","يوجد الكثير من النودلز."],["There's a bag of apples.","يوجد كيس تفاح."]],
+   mini:{q:"There ____ some cupcakes.", o:["are","is","be"], a:"are", ex:"cupcakes جمع ← are."}},
+  {t:"a few / a little / a lot of / some", tar:"قليل وكثير", page:"ص 40",
+   ar:"الأشياء التي <b>نعدّها</b> (sandwiches, apples) نقول معها <b class='en'>a few</b> = قليل.<br>الأشياء التي <b>لا نعدّها</b> (lemonade, salad, bread) نقول معها <b class='en'>a little</b> = قليل.<br><b class='en'>a lot of</b> = كثير و <b class='en'>some</b> = بعض، مع النوعين.",
+   en:"<b>a few</b> + countable (a few sandwiches). <b>a little</b> + uncountable (a little lemonade). <b>a lot of</b> and <b>some</b> go with both.",
+   ex:[["There are a lot of noodles, some crisps and a few sandwiches.","كثير من النودلز وبعض الشيبس وقليل من السندويشات."],["There is a lot of salad, some coffee and a little lemonade.","كثير من السلطة وبعض القهوة وقليل من الليمون."]],
+   mini:{q:"There's ____ lemonade.", o:["a little","a few","many"], a:"a little", ex:"lemonade لا يُعدّ ← a little."}},
+  {t:"any: negatives & questions", tar:"any في النفي والسؤال", page:"ص 40–41",
+   ar:"في النفي والسؤال نستخدم <b class='en'>any</b>.<br><span class='en'>There isn't any bread.</span> • <span class='en'>There aren't any cupcakes.</span><br>السؤال والجواب:<br><span class='en'>Are there any apples? — Yes, there are. / No, there aren't.</span><br><span class='en'>Is there any coffee? — Yes, there is. / No, there isn't.</span>",
+   en:"Use <b>any</b> in negatives and questions. Answer with the same verb: <b>Is</b> there …? — Yes, there <b>is</b>. <b>Are</b> there …? — No, there <b>aren't</b>.",
+   ex:[["There isn't any bread!","لا يوجد أي خبز! (من القصة)"],["Are there any lemon trees here?","هل توجد أشجار ليمون هنا؟"],["Is there any milk? — Yes, there is.","هل يوجد حليب؟ نعم، يوجد."]],
+   mini:{q:"Are there any eggs?", o:["Yes, there are.","Yes, there is.","No, there isn't."], a:"Yes, there are.", ex:"السؤال بـ Are ← الجواب there are / there aren't."}},
+  {t:"Shopping for food", tar:"التسوّق", page:"ص 43",
+   ar:"البائع يقول: <b class='en'>Can I help you?</b> وأنت تطلب: <b class='en'>Can I have six apples, please?</b> ثم يسأل: <b class='en'>Anything else?</b> وتجيب: <b class='en'>No, that's it, thanks.</b>",
+   en:"Seller: <b>Can I help you? Anything else? That's four rials, please.</b> You: <b>Can I have …, please? No, that's it, thanks.</b>",
+   ex:[["Can I have six apples, please?","ممكن ست تفاحات من فضلك؟"],["Sure. Anything else?","أكيد. شيء آخر؟"],["That's four rials, please.","أربعة ريالات من فضلك."]]},
+  {t:"Recipe words", tar:"كلمات الوصفة", page:"ص 44–45",
+   ar:"عندما نشرح خطوات الطبخ نرتبها بـ: <b class='en'>First</b> (أولاً) ← <b class='en'>Then</b> (ثم) ← <b class='en'>After that</b> (بعد ذلك) ← <b class='en'>Last</b> (أخيراً). مثل وصفة الهريس لرشا!",
+   en:"Order the steps with <b>First, Then, After that, Last</b>.",
+   ex:[["First, you cook the wheat in some water.","أولاً، اطبخ القمح في الماء."],["Then, you add the chicken.","ثم أضف الدجاج."],["Last, you add a little butter.","أخيراً، أضف قليلاً من الزبدة."]]},
+  {t:"Phonics: long o", tar:"صوت الـ o الطويل", page:"ص 46",
+   ar:"<b class='en'>oa</b> (boat) • <b class='en'>o-e</b> (nose) • <b class='en'>ow</b> (snow, grow) كلها تُنطق صوت <b class='en'>oʊ</b> الطويل.",
+   en:"oa, o-e and ow make the long /oʊ/ sound.",
+   ex:[["I'm in a boat and there's snow on my nose!","أنا في قارب وعلى أنفي ثلج!"],["goat, road, coat","oa"],["bone, rose, home","o-e"]],
+   mini:{q:"Same sound as <span class='en'>boat</span>?", o:["snow","box","hot"], a:"snow", ex:"boat و snow صوت o طويل."}}
+ ],
+ games:[
+  {type:"sort", e:"🍭", t:"Sweet or savoury?", tar:"حلو أم مالح؟", buckets:[["sw","Sweet","🍬"],["sa","Savoury","🧂"]],
+   items:[["cupcakes","sw"],["milkshake","sw"],["lemonade","sw"],["fruit","sw"],["chocolate","sw"],["noodles","sa"],["crisps","sa"],["sandwiches","sa"],["salad","sa"],["harees","sa"],["soup","sa"]]},
+  {type:"match", e:"🥫", t:"Container match", tar:"طابق العبوة مع ما فيها", pairs:[["a can of","lemonade"],["a bottle of","water"],["a bowl of","soup"],["a glass of","milk"],["a box of","cereal"],["a plate of","sandwiches"]]},
+  {type:"sort", e:"⚖️", t:"a few or a little?", tar:"a few أم a little؟", buckets:[["few","a few","🔢"],["little","a little","💧"]],
+   items:[["sandwiches","few"],["apples","few"],["cupcakes","few"],["eggs","few"],["grapes","few"],["lemonade","little"],["salad","little"],["bread","little"],["tea","little"],["milk","little"],["water","little"]]},
+  {type:"pick", e:"⛵", t:"Phonics boat", tar:"اختر الحروف الناقصة", items:[
+    {p:"⛵ <span class='en'>b__t</span>",o:["oa","ow","o-e"],a:"oa"},{p:"👃 <span class='en'>n_s_</span>",o:["o-e","oa","ow"],a:"o-e"},{p:"❄️ <span class='en'>sn__</span>",o:["ow","oa","o-e"],a:"ow"},
+    {p:"🐐 <span class='en'>g__t</span>",o:["oa","ow","o-e"],a:"oa"},{p:"🌹 <span class='en'>r_s_</span>",o:["o-e","oa","ow"],a:"o-e"},{p:"🌱 <span class='en'>gr__</span>",o:["ow","oa","o-e"],a:"ow"}]},
+  {type:"pick", e:"🛒", t:"At the market", tar:"حوار التسوق", items:[
+    {p:"🧑‍🌾 <span class='en'>Can I help you?</span>",o:["Can I have six apples, please?","That's four rials.","See you then!"],a:"Can I have six apples, please?"},
+    {p:"🧑‍🌾 <span class='en'>Anything else?</span>",o:["No, that's it, thanks.","Yes, there is.","I'm from Oman."],a:"No, that's it, thanks."},
+    {p:"🧑‍🌾 <span class='en'>That's four rials, please.</span>",o:["Here you are.","Can I help you?","Sorry, I can't."],a:"Here you are."},
+    {p:"👦 <span class='en'>Is there any milk?</span>",o:["Yes, there is.","Yes, there are.","Yes, I am."],a:"Yes, there is."},
+    {p:"👦 <span class='en'>Are there any eggs?</span>",o:["No, there aren't.","No, there isn't.","No, I'm not."],a:"No, there aren't."}]},
+  {type:"build", e:"🧱", t:"Sentence builder", tar:"رتّب الجملة", items:[
+    ["There aren't any cupcakes.","لا يوجد أي كب كيك."],["Is there any coffee?","هل يوجد قهوة؟"],["Can I have some grapes, please?","ممكن بعض العنب من فضلك؟"],["There's a little lemonade.","يوجد قليل من الليمون."]]}
+ ],
+ quiz:[
+  {q:"There ____ some bread.", o:["is","are","am"], a:"is", ex:"bread لا يُعدّ ← is."},
+  {q:"There ____ a lot of noodles.", o:["are","is","be"], a:"are", ex:"noodles جمع ← are."},
+  {q:"There are ____ sandwiches.", o:["a few","a little","any"], a:"a few", ex:"sandwiches تُعد ← a few."},
+  {q:"There aren't ____ cupcakes.", o:["any","some","a"], a:"any", ex:"في النفي نستخدم any."},
+  {q:"Dad: Is there any milk?  Zaid: ____", o:["Yes, there is.","No, there aren't.","Yes, they are."], a:"Yes, there is.", ex:"تمرين الاختبار ص 48: السؤال Is ← الجواب there is."},
+  {q:"We need ____ cheese.", o:["some","any","a bottle of"], a:"some", ex:"في الجملة المثبتة نستخدم some."},
+  {q:"a ____ of soup", o:["bowl","bottle","bag"], a:"bowl", ex:"الشوربة في وعاء = bowl."},
+  {q:"a ____ of water", o:["bottle","plate","box"], a:"bottle", ex:"الماء في قنينة = bottle."},
+  {q:"Seller: Anything else?  You: ____", o:["No, that's it, thanks.","Can I help you?","There isn't."], a:"No, that's it, thanks.", ex:"جواب مهذب يعني لا أريد شيئاً آخر."},
+  {q:"📗 What is Rasha's favourite food?", o:["harees","pasta","sushi"], a:"harees", ex:"رشا تحب الهريس (ص 44)."},
+  {q:"Which word do we use for the LAST step of a recipe?", o:["Last","First","Then"], a:"Last", ex:"Last = أخيراً."},
+  {q:"Which word has the same sound as <span class='en'>snow</span>?", o:["nose","not","now"], a:"nose", ex:"ow و o-e نفس الصوت."}
+ ]
+},
+{
+ id:"lc1", num:"LC1", color:"#E1D8F8", emoji:"🔺", title:"Sizes and shapes", ar:"الأحجام والأشكال + تقوية اللغة 1", pages:"ص 58–61",
+ intro:"الأشكال والأحجام، أماكن الأشياء (فوق / تحت)، وكلمات السؤال.",
+ vocab:[
+  {g:"Shapes & sizes – الأشكال والأحجام", items:[["🔵","round","دائري"],["🟥","square","مربّع"],["▭","rectangular","مستطيل"],["🔺","triangular","مثلث"],["🐘","large","كبير"],["🐭","small","صغير"]]},
+  {g:"Where is it? – أين هو؟", items:[["⬆️","up","إلى الأعلى"],["⬇️","down","إلى الأسفل"],["🔝","top","أعلى (الرف العلوي)"],["⏬","bottom","أسفل (الرف السفلي)"],["☝️","above","فوق"],["👇","below","تحت"]]},
+  {g:"Question words – كلمات السؤال", items:[["❓","What?","ماذا؟"],["📍","Where?","أين؟"],["🤔","Why?","لماذا؟"],["📅","When?","متى؟"],["🙋","Who?","من؟"]]}
+ ],
+ grammar:[
+  {t:"Size + shape + thing", tar:"الحجم ثم الشكل ثم الشيء", page:"ص 58–59",
+   ar:"في الإنجليزي نقول الحجم أولاً ثم الشكل ثم الاسم: <b class='en'>a small round ball</b> = كرة دائرية صغيرة. لاحظ أن الترتيب عكس العربي!",
+   en:"Order: size → shape → noun: <b>a large square window</b>, <b>a small rectangular door</b>.",
+   ex:[["It's a large square window.","إنها نافذة مربعة كبيرة."],["It's a small rectangular eraser.","إنها ممحاة مستطيلة صغيرة."],["Bowls are round.","الأوعية دائرية."],["This plate is triangular. It's got three sides!","هذا الصحن مثلث. له ثلاثة أضلاع!"]],
+   mini:{q:"Choose the correct order:", o:["a small round ball","a round small ball","a ball small round"], a:"a small round ball", ex:"الحجم ثم الشكل ثم الاسم."}},
+  {t:"Where are things?", tar:"أين توجد الأشياء؟", page:"ص 60",
+   ar:"<b class='en'>on the top shelf</b> = على الرف العلوي • <b class='en'>on the bottom shelf</b> = على الرف السفلي • <b class='en'>above</b> = فوق • <b class='en'>below</b> = تحت.",
+   en:"Excuse me, where are the cupcakes? — They're on the top shelf. The juice is below the bread.",
+   ex:[["Excuse me, where are the cupcakes?","عفواً، أين الكب كيك؟"],["They're on the top shelf.","إنها على الرف العلوي."],["It's below the bread.","إنه تحت الخبز."]]},
+  {t:"Question words", tar:"كلمات السؤال", page:"ص 61",
+   ar:"<b class='en'>What</b> = ماذا (شيء) • <b class='en'>Where</b> = أين (مكان) • <b class='en'>Why</b> = لماذا (سبب، نجيب بـ because) • <b class='en'>When</b> = متى (وقت) • <b class='en'>Who</b> = من (شخص).",
+   en:"What → a thing, Where → a place, Why → a reason (because…), When → a time, Who → a person.",
+   ex:[["Where are you? — I'm at the supermarket.","أين أنت؟ أنا في السوبرماركت."],["Why are you buying cupcakes? — Because it's my birthday.","لماذا تشتري كب كيك؟ لأنه عيد ميلادي."],["When is the party? — Tomorrow.","متى الحفلة؟ غداً."]],
+   mini:{q:"____ is the party? — Tomorrow.", o:["When","Who","Where"], a:"When", ex:"الجواب وقت ← When."}}
+ ],
+ games:[
+  {type:"pick", e:"🔷", t:"Shape spotter", tar:"ما اسم الشكل؟", items:[
+    {shape:"sq",o:["square","round","triangular"],a:"square"},{shape:"ci",o:["round","square","rectangular"],a:"round"},{shape:"tr",o:["triangular","square","round"],a:"triangular"},
+    {shape:"re",o:["rectangular","square","triangular"],a:"rectangular"},{shape:"bigci",o:["a large round …","a small round …","a large square …"],a:"a large round …"},
+    {shape:"smtr",o:["a small triangular …","a large triangular …","a small square …"],a:"a small triangular …"},{shape:"bigsq",o:["a large square …","a small square …","a large round …"],a:"a large square …"}]},
+  {type:"match", e:"❓", t:"Question match", tar:"طابق السؤال مع الجواب", pairs:[["Where are you?","At the shop."],["Who are you with?","My mum."],["What are you buying?","Cupcakes."],["Why?","Because it's my birthday."],["When is the party?","Tomorrow."]]},
+  {type:"sort", e:"📦", t:"Up or down?", tar:"فوق أم تحت؟", buckets:[["up","up / top / above","⬆️"],["dn","down / bottom / below","⬇️"]],
+   items:[["the sky","up"],["the roof","up"],["a bird flying","up"],["the top shelf","up"],["the floor","dn"],["the bottom shelf","dn"],["your shoes","dn"],["under the table","dn"]]}
+ ],
+ quiz:[
+  {q:"Books are usually ____.", o:["rectangular","round","triangular"], a:"rectangular", ex:"الكتب مستطيلة."},
+  {q:"Bowls are ____.", o:["round","square","triangular"], a:"round", ex:"الأوعية دائرية."},
+  {q:"A triangle has got ____ sides.", o:["three","four","five"], a:"three", ex:"المثلث له ثلاثة أضلاع."},
+  {q:"Choose the correct order:", o:["a large square window","a square large window","a window large square"], a:"a large square window", ex:"الحجم ← الشكل ← الاسم."},
+  {q:"____ are you? — I'm at the supermarket.", o:["Where","Who","Why"], a:"Where", ex:"الجواب مكان ← Where."},
+  {q:"____ are you buying cupcakes? — Because it's my birthday.", o:["Why","What","When"], a:"Why", ex:"الجواب سبب (because) ← Why."},
+  {q:"____ is she? — She's my sister.", o:["Who","What","When"], a:"Who", ex:"الجواب شخص ← Who."},
+  {q:"The juice is on the ____ shelf. (the lowest shelf)", o:["bottom","top","above"], a:"bottom", ex:"أسفل رف = bottom shelf."}
+ ]
+},
+{
+ id:"u3", num:"3", color:"#CFE6C0", emoji:"🏞️", title:"Along the wadi", ar:"على طول الوادي", pages:"ص 62–83",
+ intro:"الطبيعة والتضاريس، المقارنة والتفضيل، المحميات في عُمان، ووصف الطريق.",
+ vocab:[
+  {g:"Landscapes – التضاريس", items:[
+   ["🏞️","river","نهر"],["⛰️","mountain","جبل"],["💧","lake","بحيرة"],["💦","waterfall","شلال"],["🏝️","island","جزيرة"],["🏙️","city","مدينة كبيرة"],
+   ["🌲","forest","غابة"],["🌄","hill","تلّ"],["🏘️","town","بلدة"],["🏜️","desert","صحراء"],["🌴","oasis","واحة"],["🪨","wadi","وادي"]]},
+  {g:"Adjectives – الصفات", items:[["🕳️","deep","عميق"],["🗻","high","عالٍ / مرتفع"],["↔️","wide","عريض / واسع"],["📏","long","طويل"],["⬇️","low","منخفض"],["☀️","dry","جاف"]]}
+ ],
+ grammar:[
+  {t:"Comparatives: -er than", tar:"المقارنة بين شيئين", page:"ص 66",
+   ar:"نقارن بين <b>شيئين</b> بإضافة <b class='en'>er</b> للصفة ثم <b class='en'>than</b> (من):<br><span class='en'>high → higher than</span> = أعلى من.<br>قواعد الكتابة: • الصفة التي تنتهي بـ e نضيف r فقط: <span class='en'>wide → wider</span> • التي تنتهي بـ y نحولها إلى ier: <span class='en'>dirty → dirtier, dry → drier</span> • بعض الكلمات نضاعف آخر حرف: <span class='en'>big → bigger, hot → hotter, wet → wetter</span>.",
+   en:"Compare two things: adjective + <b>er</b> + <b>than</b>. wide → wider, dirty → dirtier, big → bigger.",
+   ex:[["A mountain is higher than a hill.","الجبل أعلى من التل."],["The wood is wider than the bag!","الخشبة أعرض من الكيس! (من القصة)"],["This mud is deeper than my shoes!","هذا الطين أعمق من حذائي!"],["My gloves are dirtier than yours!","قفازاتي أوسخ من قفازاتك!"]],
+   mini:{q:"An elephant is ____ than a mouse.", o:["bigger","biger","more big"], a:"bigger", ex:"big ← نضاعف g ← bigger."}},
+  {t:"Superlatives: the -est", tar:"التفضيل (الأكثر)", page:"ص 67",
+   ar:"عندما نقارن شيئاً مع <b>كل المجموعة</b> نقول <b class='en'>the</b> + الصفة + <b class='en'>est</b>:<br><span class='en'>high → the highest</span> = الأعلى.<br><span class='en'>Jabal Shams is the highest mountain in Oman.</span> جبل شمس أعلى جبل في عُمان 🇴🇲",
+   en:"Compare with all: <b>the</b> + adjective + <b>est</b>: the highest, the longest, the driest, the biggest.",
+   ex:[["Mount Everest is the highest mountain in the world.","إيفرست أعلى جبل في العالم."],["The Nile is the longest river in the world.","النيل أطول نهر في العالم."],["The Amazon is the widest river in the world.","الأمازون أعرض نهر في العالم."],["The Atacama is the driest desert in the world.","أتاكاما أجفّ صحراء في العالم."],["The Dead Sea is the lowest sea in the world.","البحر الميت أخفض بحر في العالم."]],
+   mini:{q:"Jabal Shams is ____ mountain in Oman.", o:["the highest","higher","the higher"], a:"the highest", ex:"مقارنة مع كل الجبال ← the highest."}},
+  {t:"Asking the way", tar:"السؤال عن الطريق", page:"ص 69",
+   ar:"<b class='en'>Excuse me, can you tell me the way to the park, please?</b> = لو سمحت، هل تدلني على طريق الحديقة؟<br><span class='en'>turn left</span> = انعطف يساراً • <span class='en'>turn right</span> = يميناً • <span class='en'>go straight ahead</span> = امشِ مستقيماً • <span class='en'>go across the road</span> = اعبر الشارع • <span class='en'>on the left</span> = على اليسار.",
+   en:"Ask: <b>Can you tell me the way to …?</b> Give directions: turn left/right, go straight ahead, go across the road.",
+   ex:[["Turn right at the supermarket.","انعطف يميناً عند السوبرماركت."],["Go straight ahead.","امشِ مستقيماً."],["Go across the road. The park is on the left.","اعبر الشارع. الحديقة على اليسار."]]},
+  {t:"Nature reserves in Oman", tar:"المحميات في عُمان", page:"ص 68",
+   ar:"🐢 <b>جزر الديمانيات</b>: تسع جزر بين السيب وبركاء، لا نزورها من مايو إلى أكتوبر لأن السلاحف تضع بيضها.<br>🐆 <b>جبل سمحان</b> في ظفار: يعيش فيه النمر العربي النادر.<br>🏛️ <b>خور روري</b>: أكبر محمية في ظفار وفيها آثار مدينة سمهرم.",
+   en:"Daymaniyat Islands: nine islands, turtles lay eggs (closed May–October). Jabal Samhan: the Arabian leopard. Khawr Ruri: the largest reserve in Dhofar.",
+   ex:[["Turtles lay their eggs on the beaches.","السلاحف تضع بيضها على الشواطئ."],["The Arabian leopard lives in Jabal Samhan.","النمر العربي يعيش في جبل سمحان."]]},
+  {t:"Phonics: eigh / ei", tar:"صوت eigh و ei", page:"ص 72",
+   ar:"<b class='en'>eigh</b> و <b class='en'>ei</b> يُنطقان مثل <b class='en'>ay</b>: <span class='en'>eight, sleigh, weigh</span> • <span class='en'>reins, reindeer, vein, beige</span>. حروف gh لا تُنطق!",
+   en:"eigh and ei make the /eɪ/ sound: eight, sleigh, reins, reindeer.",
+   ex:[["Eight reindeer with reins and a sleigh in the snow.","ثمانية أيائل مع لجام وزلاجة في الثلج."]],
+   mini:{q:"Same sound as <span class='en'>eight</span>?", o:["sleigh","egg","sit"], a:"sleigh", ex:"eight و sleigh فيهما eigh."}},
+  {t:"Writing tip: capital letters for places", tar:"نصيحة الكتابة", page:"ص 71",
+   ar:"أسماء الأماكن تبدأ دائماً بحرف كبير: <span class='en'>Muscat, Sur, Wadi Shab, Jabal Samhan</span>. وفي ملف الحقائق (fact file) نستخدم عناوين مثل: <span class='en'>Capital city, Landscape, Highest mountain</span>.",
+   en:"Use capital letters for names of places. Use headings in a fact file.",
+   ex:[["Capital city: Muscat","العاصمة: مسقط"],["Highest mountain: Jabal Shams","أعلى جبل: جبل شمس"]]}
+ ],
+ games:[
+  {type:"match", e:"🧩", t:"Nature memory", tar:"ذاكرة الطبيعة", pairs:[["mountain","⛰️"],["island","🏝️"],["desert","🏜️"],["forest","🌲"],["river","🏞️"],["oasis","🌴"]]},
+  {type:"pick", e:"🐘", t:"Animal contest", tar:"مسابقة الحيوانات: من الأكبر؟", items:[
+    {p:"🐋 vs 🐘<br><span class='en'>A whale is ____ than an elephant.</span>",o:["larger","smaller","the largest"],a:"larger"},
+    {p:"🦒 vs 🐪<br><span class='en'>A giraffe is ____ than a camel.</span>",o:["taller","shorter","tallest"],a:"taller"},
+    {p:"🐆 vs 🐎<br><span class='en'>A cheetah is ____ than a horse.</span>",o:["faster","slower","fastest"],a:"faster"},
+    {p:"🐭 🐝 🐘<br><span class='en'>The bee is ____.</span>",o:["the smallest","smaller","the biggest"],a:"the smallest"},
+    {p:"🐋 🐘 🐪<br><span class='en'>What's the largest animal?</span>",o:["the whale","the camel","the elephant"],a:"the whale"},
+    {p:"🔥 <span class='en'>hot → ____</span>",o:["hotter","hoter","more hot"],a:"hotter"},
+    {p:"🧤 <span class='en'>dirty → ____</span>",o:["dirtier","dirtyer","dirtter"],a:"dirtier"},
+    {p:"↔️ <span class='en'>wide → ____</span>",o:["wider","wideer","widder"],a:"wider"}]},
+  {type:"pick", e:"🌍", t:"World records", tar:"أرقام قياسية عالمية", items:[
+    {p:"🏔️ <span class='en'>The highest mountain in the world?</span>",o:["Mount Everest","Jabal Shams","Jabal Samhan"],a:"Mount Everest"},
+    {p:"🏞️ <span class='en'>The longest river in the world?</span>",o:["the Nile","the Amazon","the Congo"],a:"the Nile"},
+    {p:"🌊 <span class='en'>The widest river in the world?</span>",o:["the Amazon","the Nile","the Yangtze"],a:"the Amazon"},
+    {p:"🏜️ <span class='en'>The driest desert in the world?</span>",o:["the Atacama","the Sahara","the Rub' al Khali"],a:"the Atacama"},
+    {p:"🌊 <span class='en'>The lowest sea in the world?</span>",o:["the Dead Sea","the Mediterranean","the Red Sea"],a:"the Dead Sea"},
+    {p:"🇴🇲 <span class='en'>The highest mountain in Oman?</span>",o:["Jabal Shams","Jabal Samhan","Everest"],a:"Jabal Shams"}]},
+  {type:"pick", e:"🧭", t:"Which way?", tar:"اتبع الاتجاه", items:[
+    {p:"⬅️",o:["turn left","turn right","go straight ahead"],a:"turn left"},{p:"➡️",o:["turn right","turn left","go across the road"],a:"turn right"},
+    {p:"⬆️",o:["go straight ahead","turn left","turn right"],a:"go straight ahead"},{p:"🚶‍♂️🛣️",o:["go across the road","turn left","go up"],a:"go across the road"},
+    {p:"🦌 <span class='en'>r__ndeer</span>",o:["ei","eigh","ee"],a:"ei"},{p:"8️⃣ <span class='en'>__t</span>",o:["eigh","ei","ay"],a:"eigh"}]},
+  {type:"build", e:"🧱", t:"Sentence builder", tar:"رتّب الجملة", items:[
+    ["A mountain is higher than a hill.","الجبل أعلى من التل."],["The Nile is the longest river.","النيل أطول نهر."],["Turn left at the hospital.","انعطف يساراً عند المستشفى."],["Is a bike faster than a car?","هل الدراجة أسرع من السيارة؟"]]}
+ ],
+ quiz:[
+  {q:"A mountain is ____ than a hill.", o:["higher","highest","high"], a:"higher", ex:"مقارنة بين شيئين ← er + than."},
+  {q:"big → ____", o:["bigger","biger","more big"], a:"bigger", ex:"نضاعف g."},
+  {q:"dirty → ____", o:["dirtier","dirtyer","more dirty"], a:"dirtier", ex:"y ← ier."},
+  {q:"The Nile is ____ river in the world.", o:["the longest","longer","the long"], a:"the longest", ex:"مع كل الأنهار ← the longest."},
+  {q:"What is the highest mountain in Oman?", o:["Jabal Shams","Mount Everest","Jabal Samhan"], a:"Jabal Shams", ex:"جبل شمس أعلى جبل في عُمان."},
+  {q:"📗 It's got water all around it.", o:["island","forest","city"], a:"island", ex:"الماء حوله من كل الجهات = جزيرة (تمرين ص 63)."},
+  {q:"📗 It's got a lot of trees.", o:["forest","desert","lake"], a:"forest", ex:"كثير من الأشجار = غابة."},
+  {q:"📗 It's got a lot of buildings and a lot of people. It's very big.", o:["city","hill","oasis"], a:"city", ex:"مباني وناس كثير = مدينة."},
+  {q:"Which animal lives in Jabal Samhan?", o:["the Arabian leopard","the tiger","the penguin"], a:"the Arabian leopard", ex:"النمر العربي النادر."},
+  {q:"📗 River rescue: How many times does Jasim blow his whistle?", o:["six","five","eight"], a:"six", ex:"نفخ ست مرات = إشارة الطوارئ."},
+  {q:"📗 River rescue: What takes Amjed to hospital?", o:["a helicopter","a canoe","a bus"], a:"a helicopter", ex:"جاءت طائرة مروحية."},
+  {q:"Excuse me, can you tell me the way to the park? — ____", o:["Turn right at the supermarket.","Yes, there is.","I'm from Sur."], a:"Turn right at the supermarket.", ex:"الجواب يصف الطريق."}
+ ]
+},
+{
+ id:"u4", num:"4", color:"#FFEBA8", emoji:"👩‍🚒", title:"All about jobs", ar:"كل شيء عن المهن", pages:"ص 84–105",
+ intro:"المهن، المضارع المستمر، القوانين must / mustn't، والاتصال بالطوارئ.",
+ vocab:[
+  {g:"Jobs – المهن", items:[
+   ["👩‍🔬","scientist","عالِم"],["👨‍🌾","farmer","مزارع"],["👩‍🚒","firefighter","رجل إطفاء"],["👮","police officer","شرطي"],["🦷","dentist","طبيب أسنان"],["⚖️","lawyer","محامٍ"],
+   ["🔧","mechanic","ميكانيكي"],["👩‍💻","computer programmer","مبرمج حاسوب"],["👨‍🍳","chef","طاهٍ (شيف)"],["🐶","vet","طبيب بيطري"],["👷","engineer","مهندس"],["🚌","bus driver","سائق حافلة"]]},
+  {g:"Rules – القوانين", items:[
+   ["🗑️","put litter in the bin","ضع القمامة في السلة"],["✅","follow the rules","اتبع القوانين"],["🤫","be quiet in class","كن هادئاً في الصف"],["⏰","arrive on time","احضر في الوقت"],
+   ["🚯","drop litter","رمي القمامة"],["❌","break the rules","كسر القوانين"],["📢","shout in class","الصراخ في الصف"],["🐌","be late","التأخر"]]}
+ ],
+ grammar:[
+  {t:"Present continuous", tar:"المضارع المستمر (يحدث الآن)", page:"ص 88",
+   ar:"نستخدمه لشيء يحدث <b>الآن</b>. نكوّنه: <b class='en'>am / is / are</b> + الفعل + <b class='en'>ing</b>.<br><span class='en'>I'm watching</span> • <span class='en'>He's opening</span> • <span class='en'>They're playing</span><br>النفي: <b class='en'>isn't / aren't</b> • السؤال: نبدأ بـ <b class='en'>Are / Is</b>: <span class='en'>Are you wearing a green jacket? — Yes, I am. / No, I'm not.</span><br>ملاحظة: الفعل الذي ينتهي بـ e نحذف e: <span class='en'>drive → driving</span>.",
+   en:"Use <b>am/is/are + verb-ing</b> for actions happening now. Negative: isn't/aren't. Question: Is he …? Are you …?",
+   ex:[["I'm watching Lottie's house.","أنا أراقب بيت لوتي. (من القصة)"],["He's opening the fridge!","هو يفتح الثلاجة!"],["He isn't eating any food.","هو لا يأكل أي طعام."],["They aren't playing cards.","هم لا يلعبون الورق."],["Is he wearing a yellow jacket? — Yes, he is.","هل يلبس سترة صفراء؟ نعم."]],
+   mini:{q:"The chef ____ cooking.", o:["is","are","am"], a:"is", ex:"the chef = he ← is."}},
+  {t:"must / mustn't", tar:"يجب / يجب ألّا", page:"ص 89",
+   ar:"<b class='en'>must</b> = يجب (قانون لازم نتبعه). <b class='en'>mustn't</b> = ممنوع. بعدها الفعل مباشرة <b>بدون to</b> وبدون s:<br><span class='en'>You must be quiet in class.</span> • <span class='en'>You mustn't shout.</span>",
+   en:"<b>must</b> = it's a rule, do it. <b>mustn't</b> = don't do it. Use the base verb after it: You must <b>be</b> quiet.",
+   ex:[["You must be quiet in class.","يجب أن تكون هادئاً في الصف."],["You mustn't break the rules at school.","ممنوع كسر قوانين المدرسة."],["You mustn't drop litter in the playground.","ممنوع رمي القمامة في الساحة."],["You must arrive on time.","يجب أن تحضر في الوقت."]],
+   mini:{q:"You ____ play with fire!", o:["mustn't","must","musts"], a:"mustn't", ex:"اللعب بالنار ممنوع ← mustn't."}},
+  {t:"Calling the emergency services", tar:"الاتصال بالطوارئ", page:"ص 91",
+   ar:"رقم الطوارئ في عُمان هو <b class='en'>9999</b> 🚑. نقول ماذا نحتاج ثم نعطي الاسم والعنوان والرقم:<br><span class='en'>I need an ambulance, please.</span> = أحتاج سيارة إسعاف من فضلك.",
+   en:"Call <b>9999</b>. Say: <b>I need an ambulance / the police / a fire engine, please.</b> Give your name, address and phone number.",
+   ex:[["I need an ambulance, please.","أحتاج سيارة إسعاف من فضلك."],["My address is 4 South Road.","عنواني 4 شارع الجنوب."],["He's got a broken leg.","رجله مكسورة."]],
+   mini:{q:"The emergency number in Oman is ____.", o:["9999","999","1234"], a:"9999", ex:"رقم الطوارئ 9999."}},
+  {t:"Phonics: oo / ue / ew", tar:"صوت oo الطويل", page:"ص 94",
+   ar:"<b class='en'>oo</b> (boots, moon) • <b class='en'>ue</b> (blue, glue) • <b class='en'>ew</b> (screw, chew, new) كلها تُنطق <b class='en'>uː</b> الطويل.",
+   en:"oo, ue and ew make the long /uː/ sound.",
+   ex:[["There's a blue screw in my boot!","يوجد مسمار أزرق في حذائي!"]],
+   mini:{q:"Same sound as <span class='en'>blue</span>?", o:["screw","bus","cup"], a:"screw", ex:"ue و ew نفس الصوت."}},
+  {t:"Writing a report", tar:"كتابة تقرير", page:"ص 93",
+   ar:"التقرير فيه <b>فقرات</b>: الأولى والثانية للنتائج، والأخيرة لرأيك. استخدم: <span class='en'>He/She wants to be a … because …</span>",
+   en:"Use a new paragraph for each new idea. Results first, your opinion last.",
+   ex:[["Azza wants to be a vet because she likes animals.","عزة تريد أن تكون طبيبة بيطرية لأنها تحب الحيوانات."],["When I grow up, I want to be a chef because I love cooking.","عندما أكبر أريد أن أكون طاهياً لأني أحب الطبخ."]]}
+ ],
+ games:[
+  {type:"match", e:"🧩", t:"Job memory", tar:"ذاكرة المهن", pairs:[["dentist","🦷"],["chef","👨‍🍳"],["firefighter","👩‍🚒"],["vet","🐶"],["mechanic","🔧"],["farmer","👨‍🌾"]]},
+  {type:"pick", e:"🕵️", t:"Who am I?", tar:"من أنا؟ خمّن المهنة", items:[
+    {p:"🐾 <span class='en'>Who works with animals?</span>",o:["vet","lawyer","engineer"],a:"vet"},
+    {p:"😁 <span class='en'>Who helps you with your teeth?</span>",o:["dentist","chef","farmer"],a:"dentist"},
+    {p:"🍽️ <span class='en'>Who works in a restaurant?</span>",o:["chef","police officer","scientist"],a:"chef"},
+    {p:"🚗 <span class='en'>This person is repairing a car.</span>",o:["mechanic","vet","dentist"],a:"mechanic"},
+    {p:"🌾 <span class='en'>This person is working in a field.</span>",o:["farmer","lawyer","programmer"],a:"farmer"},
+    {p:"🔥 <span class='en'>This person works for the fire brigade.</span>",o:["firefighter","bus driver","chef"],a:"firefighter"},
+    {p:"🧪 <span class='en'>This person works in a science lab.</span>",o:["scientist","farmer","mechanic"],a:"scientist"}]},
+  {type:"sort", e:"🚦", t:"Must or mustn't?", tar:"يجب أم ممنوع؟", buckets:[["m","You must …","✅"],["mn","You mustn't …","⛔"]],
+   items:[["put litter in the bin","m"],["follow the rules","m"],["be quiet in class","m"],["arrive on time","m"],["walk on the path","m"],["drop litter","mn"],["break the rules","mn"],["shout in class","mn"],["be late","mn"],["play with fire","mn"]]},
+  {type:"pick", e:"👢", t:"Phonics boots", tar:"اختر الحروف الناقصة", items:[
+    {p:"👢 <span class='en'>b__ts</span>",o:["oo","ue","ew"],a:"oo"},{p:"🔵 <span class='en'>bl__</span>",o:["ue","oo","ew"],a:"ue"},{p:"🔩 <span class='en'>scr__</span>",o:["ew","ue","oo"],a:"ew"},
+    {p:"🌙 <span class='en'>m__n</span>",o:["oo","ew","ue"],a:"oo"},{p:"🧴 <span class='en'>gl__</span>",o:["ue","oo","ew"],a:"ue"},{p:"🆕 <span class='en'>n__</span>",o:["ew","oo","ue"],a:"ew"}]},
+  {type:"build", e:"🧱", t:"Sentence builder", tar:"رتّب الجملة", items:[
+    ["He's driving a bus.","هو يقود حافلة."],["They aren't playing cards.","هم لا يلعبون الورق."],["You must be quiet in class.","يجب أن تكون هادئاً في الصف."],["Are you wearing a green jacket?","هل تلبس سترة خضراء؟"]]}
+ ],
+ quiz:[
+  {q:"📗 Who helps you with your teeth?", o:["dentist","vet","chef"], a:"dentist", ex:"طبيب الأسنان."},
+  {q:"📗 Who works with animals?", o:["vet","lawyer","mechanic"], a:"vet", ex:"الطبيب البيطري."},
+  {q:"He ____ cooking.", o:["is","are","am"], a:"is", ex:"he ← is + ing."},
+  {q:"They ____ playing cards.", o:["aren't","isn't","not"], a:"aren't", ex:"they ← aren't."},
+  {q:"Are you wearing a green jacket? — No, ____.", o:["I'm not","I amn't","I isn't"], a:"I'm not", ex:"الجواب القصير: No, I'm not."},
+  {q:"What is the computer programmer doing?", o:["She's programming a computer.","She programs a computer yesterday.","She program computer."], a:"She's programming a computer.", ex:"يحدث الآن ← is + ing."},
+  {q:"You ____ drop litter.", o:["mustn't","must","musts"], a:"mustn't", ex:"رمي القمامة ممنوع."},
+  {q:"You ____ arrive on time.", o:["must","mustn't","must to"], a:"must", ex:"الحضور في الوقت واجب، و must بدون to."},
+  {q:"What's the emergency phone number in Oman?", o:["9999","911","1111"], a:"9999", ex:"9999."},
+  {q:"📗 Exam practice: This person is repairing a car.", o:["a mechanic","a chef","a farmer"], a:"a mechanic", ex:"يصلح السيارات = ميكانيكي (ص 96)."},
+  {q:"📗 Martina the zoo vet takes care of …", o:["birds, snakes and giraffes","only small pets","cars"], a:"birds, snakes and giraffes", ex:"مارتينا تعالج حيوانات حديقة الحيوان الكبيرة والصغيرة."},
+  {q:"Same sound as <span class='en'>boots</span>?", o:["blue","but","book-ing"], a:"blue", ex:"oo و ue نفس الصوت."}
+ ]
+},
+{
+ id:"lc2", num:"LC2", color:"#F8D3DE", emoji:"🩺", title:"Health", ar:"الصحة + تقوية اللغة 2", pages:"ص 106–109",
+ intro:"الأمراض البسيطة والنصائح الصحية باستخدام should / shouldn't.",
+ vocab:[
+  {g:"Health & illness – الصحة والمرض", items:[["🤧","a cold","زكام"],["🤕","a headache","صداع"],["😷","a sore throat","التهاب الحلق"],["🤢","a stomachache","ألم في المعدة"],["😮‍💨","a cough","سعال (كحة)"],["💊","medicine","دواء"]]},
+  {g:"Health advice – نصائح صحية", items:[["💧","drink lots of water","اشرب ماءً كثيراً"],["💊","have some medicine","خذ دواء"],["🛌","rest in bed","ارتح في السرير"],["🥦","eat vegetables","كل الخضروات"],["⚽","play sports","مارس الرياضة"]]}
+ ],
+ grammar:[
+  {t:"should / shouldn't", tar:"ينبغي / لا ينبغي (نصيحة)", page:"ص 106–108",
+   ar:"نستخدم <b class='en'>should</b> لنعطي <b>نصيحة</b>، و <b class='en'>shouldn't</b> لنقول «الأفضل ألا تفعل». بعدها الفعل مباشرة:<br><span class='en'>You should rest in bed.</span> • <span class='en'>You shouldn't go to school.</span><br>الفرق: <b class='en'>must</b> قانون لازم، و <b class='en'>should</b> نصيحة.",
+   en:"Use <b>should</b> for advice and <b>shouldn't</b> for things that are not a good idea. should + base verb.",
+   ex:[["He has a headache. He shouldn't play video games.","عنده صداع. لا ينبغي أن يلعب ألعاب الفيديو."],["She has a sore throat. She shouldn't shout!","عندها التهاب حلق. لا ينبغي أن تصرخ!"],["You should drink lots of water.","ينبغي أن تشرب ماءً كثيراً."]],
+   mini:{q:"I have a cold. — You ____ rest in bed.", o:["should","shouldn't","mustn't"], a:"should", ex:"الراحة نصيحة جيدة ← should."}},
+  {t:"At the doctor's", tar:"عند الطبيب", page:"ص 108–109",
+   ar:"الطبيب: <b class='en'>What's the problem? / What's the matter?</b><br>المريض: <b class='en'>I don't feel well. I have a stomachache.</b><br>الطبيب: <b class='en'>You should drink lots of water. You shouldn't eat a lot.</b>",
+   en:"Doctor: What's the matter? Patient: I don't feel well. I have a … What should I do?",
+   ex:[["Hello, doctor. I don't feel well.","مرحباً دكتور. لا أشعر أنني بخير."],["I have a cold. What should I do?","عندي زكام. ماذا ينبغي أن أفعل؟"],["Thank you, doctor.","شكراً دكتور."]]}
+ ],
+ games:[
+  {type:"pick", e:"🩺", t:"Little doctor", tar:"كن الطبيب: اختر النصيحة", items:[
+    {p:"🤢 <span class='en'>I have a stomachache.</span>",o:["You shouldn't eat a lot.","You should eat a lot of cake.","You should shout."],a:"You shouldn't eat a lot."},
+    {p:"🤕 <span class='en'>I have a headache.</span>",o:["You shouldn't play video games.","You should play video games all day.","You should run fast."],a:"You shouldn't play video games."},
+    {p:"😷 <span class='en'>I have a sore throat.</span>",o:["You shouldn't shout.","You should shout.","You should eat crisps."],a:"You shouldn't shout."},
+    {p:"🤧 <span class='en'>I have a cold.</span>",o:["You should rest in bed.","You should go swimming.","You shouldn't sleep."],a:"You should rest in bed."},
+    {p:"😮‍💨 <span class='en'>I have a cough.</span>",o:["You should have some medicine.","You should drink cold milkshake.","You should shout."],a:"You should have some medicine."}]},
+  {type:"match", e:"🧩", t:"Illness memory", tar:"ذاكرة الأمراض", pairs:[["a cold","🤧"],["a headache","🤕"],["a sore throat","😷"],["a stomachache","🤢"],["medicine","💊"],["rest in bed","🛌"]]},
+  {type:"build", e:"🧱", t:"Doctor dialogue", tar:"رتّب الجملة", items:[
+    ["What's the matter?","ما المشكلة؟"],["I don't feel well.","لا أشعر أنني بخير."],["You should drink lots of water.","ينبغي أن تشرب ماءً كثيراً."],["You shouldn't go to school.","لا ينبغي أن تذهب للمدرسة."]]}
+ ],
+ quiz:[
+  {q:"He has a headache. He ____ play video games.", o:["shouldn't","should","must"], a:"shouldn't", ex:"الألعاب تزيد الصداع."},
+  {q:"She has a sore throat. She shouldn't ____.", o:["shout","drink water","rest"], a:"shout", ex:"الصراخ يؤذي الحلق."},
+  {q:"I have a stomachache. — You should drink lots of ____.", o:["water","coffee","lemonade"], a:"water", ex:"الماء نصيحة الكتاب (ص 106)."},
+  {q:"Doctor: What's the matter?  Patient: ____", o:["I have a cold.","Thank you, doctor.","You should rest."], a:"I have a cold.", ex:"المريض يشرح مشكلته."},
+  {q:"Sami has a cold. He ____ go to school.", o:["shouldn't","should","is"], a:"shouldn't", ex:"المريض يرتاح في البيت."},
+  {q:"🛌 = ____", o:["rest in bed","have some medicine","play sports"], a:"rest in bed", ex:"الراحة في السرير."}
+ ]
+}
+];
+
+const FINAL = [
+ {s:"Vocabulary", q:"Where are you from? — I'm from Egypt. I'm ____.", o:["Egyptian","Egypt","British"], a:"Egyptian", ex:"الجنسية المصرية = Egyptian."},
+ {s:"Vocabulary", q:"We do experiments in the ____.", o:["science lab","headteacher","P.E."], a:"science lab", ex:"مختبر العلوم."},
+ {s:"Vocabulary", q:"You can eat this for breakfast. You put it in a bowl with milk.", o:["cereal","coffee","crisps"], a:"cereal", ex:"رقائق الإفطار (تمرين ص 47)."},
+ {s:"Vocabulary", q:"It's hard to climb. It's very high.", o:["mountain","lake","town"], a:"mountain", ex:"الجبل."},
+ {s:"Vocabulary", q:"This person is working for the fire brigade.", o:["a firefighter","a chef","a lawyer"], a:"a firefighter", ex:"رجل الإطفاء."},
+ {s:"Grammar", q:"What time is it?", clock:[10,45], o:["quarter to eleven","quarter past ten","quarter to ten"], a:"quarter to eleven", ex:"10:45 = الحادية عشرة إلا ربع."},
+ {s:"Grammar", q:"My brother ____ football twice a week.", o:["plays","play","playing"], a:"plays", ex:"he ← plays."},
+ {s:"Grammar", q:"Choose the correct sentence:", o:["He always eats fish for lunch.","He eats always fish for lunch.","Always he eats fish for lunch."], a:"He always eats fish for lunch.", ex:"always قبل الفعل."},
+ {s:"Grammar", q:"There ____ a lot of salad.", o:["is","are","be"], a:"is", ex:"salad لا تُعد ← is."},
+ {s:"Grammar", q:"Are there any apples? — No, ____.", o:["there aren't","there isn't","they aren't"], a:"there aren't", ex:"Are ← there aren't."},
+ {s:"Grammar", q:"The river is ____ than the road.", o:["longer","longest","more long"], a:"longer", ex:"مقارنة بين شيئين."},
+ {s:"Grammar", q:"Mount Everest is ____ mountain in the world.", o:["the highest","higher","the high"], a:"the highest", ex:"التفضيل ← the highest."},
+ {s:"Grammar", q:"Look! The farmer ____ vegetables.", o:["is growing","grows yesterday","are growing"], a:"is growing", ex:"كلمة <span class='en'>Look!</span> تعني أن الشيء يحدث الآن ← is + ing."},
+ {s:"Grammar", q:"You ____ shout in class.", o:["mustn't","must","should to"], a:"mustn't", ex:"الصراخ ممنوع."},
+ {s:"Grammar", q:"I have a cough. — You ____ have some medicine.", o:["should","shouldn't","mustn't"], a:"should", ex:"نصيحة ← should."},
+ {s:"Reading", read:true, q:"Where does Salim live?", o:["Nizwa","Sur","Muscat"], a:"Nizwa", ex:"I live in Nizwa."},
+ {s:"Reading", read:true, q:"When does Salim have English?", o:["at quarter past eight","at half past eight","at quarter to eight"], a:"at quarter past eight", ex:"every day at quarter past eight."},
+ {s:"Reading", read:true, q:"When does he play football?", o:["on Thursdays","every day","at the weekend"], a:"on Thursdays", ex:"On Thursdays, I play football."},
+ {s:"Reading", read:true, q:"The water in the wadi is ____ than the school pool.", o:["deeper","smaller","higher"], a:"deeper", ex:"deeper than the pool."},
+ {s:"Reading", read:true, q:"What is his dad doing now?", o:["He's fixing a car.","He's cooking.","He's driving a bus."], a:"He's fixing a car.", ex:"أبوه ميكانيكي يصلح سيارة الآن."},
+ {s:"Reading", read:true, q:"What does Salim want to be? Why?", o:["a vet, because he loves animals","a chef, because he loves cooking","a dentist, because he likes teeth"], a:"a vet, because he loves animals", ex:"I want to be a vet because I love animals."},
+ {s:"Phonics", q:"Which word has the same sound as <span class='en'>fly</span>?", o:["night","fish","fill"], a:"night", ex:"صوت i الطويل."},
+ {s:"Phonics", q:"Which word has the same sound as <span class='en'>eight</span>?", o:["weigh","egg","eat"], a:"weigh", ex:"eigh."},
+ {s:"Everyday English", q:"Do you want to go to the park on Saturday?", o:["Sorry, I'm not free.","Yes, there is.","Anything else?"], a:"Sorry, I'm not free.", ex:"رد على دعوة."},
+ {s:"Everyday English", q:"Can I help you?", o:["Can I have three lemons, please?","I have a headache.","Turn left."], a:"Can I have three lemons, please?", ex:"حوار في السوق."},
+ {s:"Everyday English", q:"Hello, 9999. What service do you need?", o:["I need an ambulance, please.","I'm from Oman.","Let's meet at five."], a:"I need an ambulance, please.", ex:"اتصال بالطوارئ."}
+];
+const READING = "Hi! My name is Salim and I'm nine. I live in Nizwa. I always get up early. I have English every day at quarter past eight. My favourite subject is Science. On Thursdays, I play football with my friends. At the weekend, we go to the wadi. The water there is deeper than the pool at my school! My dad is a mechanic. Look, he's fixing a car now. When I grow up, I want to be a vet because I love animals.";
+
+/* ============ STATE ============ */
+const KEY="g4eng-v1";
+let S={quiz:{},games:{},final:0,name:"",sound:true};
+try{const r=localStorage.getItem(KEY); if(r) S=Object.assign(S,JSON.parse(r));}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){} updateStars();}
+function starsFor(p){return p>=90?3:p>=70?2:p>=50?1:0}
+function totalStars(){let t=0;UNITS.forEach(u=>{t+=starsFor(S.quiz[u.id]||0);t+=(S.games[u.id]||[]).length});t+=starsFor(S.final||0)*2;return t}
+function maxStars(){let t=0;UNITS.forEach(u=>{t+=3+u.games.length});return t+6}
+function updateStars(){const el=document.getElementById("starCount"); if(el) el.textContent=totalStars();}
+
+/* ============ HELPERS ============ */
+const $=s=>document.querySelector(s);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;");
+const stripTags=s=>String(s).replace(/<[^>]*>/g,"");
+let voice=null;
+function pickVoice(){try{const v=speechSynthesis.getVoices();voice=v.find(x=>/en-GB/i.test(x.lang))||v.find(x=>/^en/i.test(x.lang))||null}catch(e){}}
+if("speechSynthesis" in window){pickVoice();speechSynthesis.onvoiceschanged=pickVoice}
+function say(t){try{if(!("speechSynthesis" in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(stripTags(t).replace(/_+/g," blank "));u.lang="en-GB";if(voice)u.voice=voice;u.rate=.85;u.pitch=1.1;speechSynthesis.speak(u)}catch(e){}}
+let actx=null;
+function beep(ok){if(!S.sound)return;try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const notes=ok?[523,659,784]:[330,247];notes.forEach((f,i)=>{const o=actx.createOscillator(),g=actx.createGain();o.type="sine";o.frequency.value=f;g.gain.setValueAtTime(.0001,actx.currentTime+i*.09);g.gain.exponentialRampToValueAtTime(.18,actx.currentTime+i*.09+.02);g.gain.exponentialRampToValueAtTime(.0001,actx.currentTime+i*.09+.22);o.connect(g);g.connect(actx.destination);o.start(actx.currentTime+i*.09);o.stop(actx.currentTime+i*.09+.25)})}catch(e){}}
+function confetti(){const c=document.createElement("div");c.className="conf";const cols=["#FFD36B","#7FD6C4","#F79A86","#A9C8F5","#C9B6F2","#9AD98A"];for(let i=0;i<70;i++){const p=document.createElement("i");p.style.left=Math.random()*100+"%";p.style.background=cols[i%cols.length];p.style.animationDelay=Math.random()*.6+"s";p.style.transform=`rotate(${Math.random()*360}deg)`;c.appendChild(p)}document.body.appendChild(c);setTimeout(()=>c.remove(),3400)}
+function toggleSound(){S.sound=!S.sound;save();$("#sndBtn").textContent=S.sound?"🔊":"🔈"}
+function toggleTheme(){const r=document.documentElement;const cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");const nx=cur==="dark"?"light":"dark";r.setAttribute("data-theme",nx);$("#themeBtn").textContent=nx==="dark"?"☀️":"🌙";try{localStorage.setItem(KEY+"-theme",nx)}catch(e){}}
+try{const th=localStorage.getItem(KEY+"-theme");if(th){document.documentElement.setAttribute("data-theme",th)}}catch(e){}
+function sayBtn(t){return `<button class="say" aria-label="استمع" onclick="event.stopPropagation();say(this.dataset.t)" data-t="${esc(stripTags(t))}">🔊</button>`}
+function starsHTML(n){return `<span class="stars">${[1,2,3].map(i=>`<span class="${i<=n?"":"off"}">⭐</span>`).join("")}</span>`}
+function clockSVG(h,m){const ma=m*6,ha=(h%12)*30+m*.5;let ticks="";for(let i=0;i<12;i++){const a=i*30*Math.PI/180;ticks+=`<line x1="${60+44*Math.sin(a)}" y1="${60-44*Math.cos(a)}" x2="${60+50*Math.sin(a)}" y2="${60-50*Math.cos(a)}" stroke="#26405A" stroke-width="${i%3?2:4}" stroke-linecap="round"/>`}
+ const nums=[12,3,6,9].map((n,i)=>{const a=i*90*Math.PI/180;return `<text x="${60+36*Math.sin(a)}" y="${60-36*Math.cos(a)+5}" text-anchor="middle" font-size="13" font-weight="800" fill="#26405A">${n}</text>`}).join("");
+ return `<svg viewBox="0 0 120 120" width="130" height="130" aria-label="clock"><circle cx="60" cy="60" r="56" fill="#FFF9E6" stroke="#FFD36B" stroke-width="6"/>${ticks}${nums}<line x1="60" y1="60" x2="60" y2="32" stroke="#2E9C8E" stroke-width="6" stroke-linecap="round" transform="rotate(${ha} 60 60)"/><line x1="60" y1="60" x2="60" y2="18" stroke="#F79A86" stroke-width="4" stroke-linecap="round" transform="rotate(${ma} 60 60)"/><circle cx="60" cy="60" r="5" fill="#26405A"/></svg>`}
+function shapeSVG(k){const f="#7FD6C4",st="#2E9C8E";const m={sq:`<rect x="30" y="20" width="60" height="60" rx="6" fill="${f}" stroke="${st}" stroke-width="4"/>`,ci:`<circle cx="60" cy="50" r="32" fill="#FFD36B" stroke="#E0AE2F" stroke-width="4"/>`,tr:`<polygon points="60,14 98,84 22,84" fill="#F79A86" stroke="#D96F5B" stroke-width="4" stroke-linejoin="round"/>`,re:`<rect x="16" y="30" width="88" height="44" rx="6" fill="#A9C8F5" stroke="#5E8FD6" stroke-width="4"/>`,bigci:`<circle cx="60" cy="50" r="44" fill="#FFD36B" stroke="#E0AE2F" stroke-width="4"/>`,smtr:`<polygon points="60,38 76,70 44,70" fill="#F79A86" stroke="#D96F5B" stroke-width="3" stroke-linejoin="round"/>`,bigsq:`<rect x="14" y="6" width="92" height="88" rx="6" fill="${f}" stroke="${st}" stroke-width="4"/>`};return `<svg viewBox="0 0 120 100" width="150" height="125">${m[k]}</svg>`}
+const mascot=`<svg class="mascot" viewBox="0 0 220 180" role="img" aria-label="توتي السلحفاة"><ellipse cx="110" cy="160" rx="80" ry="10" fill="rgba(38,64,90,.12)"/><ellipse cx="62" cy="140" rx="16" ry="12" fill="#8FD9A8"/><ellipse cx="150" cy="142" rx="16" ry="12" fill="#8FD9A8"/><circle cx="178" cy="92" r="30" fill="#8FD9A8"/><circle cx="186" cy="84" r="7" fill="#fff"/><circle cx="188" cy="85" r="4" fill="#26405A"/><circle cx="170" cy="84" r="6" fill="#fff"/><circle cx="171" cy="85" r="3.5" fill="#26405A"/><path d="M168 102 q12 10 24 0" stroke="#26405A" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="198" cy="98" r="5" fill="#F7A7A0" opacity=".7"/><path d="M28 130 Q30 40 110 38 Q180 40 176 130 Z" fill="#2E9C8E"/><path d="M40 128 Q44 58 110 54 Q166 58 164 128 Z" fill="#46B7A6"/><path d="M110 56 L110 128 M74 66 L86 128 M146 66 L134 128 M44 100 L164 100" stroke="#2E9C8E" stroke-width="5" stroke-linecap="round"/><rect x="24" y="124" width="156" height="12" rx="6" fill="#FFD36B"/><circle cx="92" cy="30" r="10" fill="#FFD36B"/><path d="M84 30 q8 -22 26 -8" stroke="#F79A86" stroke-width="5" fill="none" stroke-linecap="round"/></svg>`;
+
+/* ============ ROUTER ============ */
+function route(){const h=location.hash.replace(/^#\/?/,"").split("/");closeOv(true);
+ if(h[0]==="u"){const u=UNITS.find(x=>x.id===h[1]);if(u){renderUnit(u,h[2]||"learn");return}}
+ if(h[0]==="final"){renderFinal();return}
+ renderHome()}
+window.addEventListener("hashchange",route);
+
+function observe(){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll(".reveal").forEach((el,i)=>{el.style.transitionDelay=Math.min(i*60,360)+"ms";io.observe(el)})}
+
+/* ============ HOME ============ */
+function renderHome(){
+ const pct=Math.round(totalStars()/maxStars()*100);
+ const hi=S.name?`هلا ${esc(S.name)}! 👋`:"هلا! Hello! 👋";
+ $("#app").innerHTML=`
+ <section class="hero">
+  <div>
+   <h1>مغامرة الإنجليزي<span class="en">English Adventure · Grade 4A</span></h1>
+   <p>تعلّم كل وحدات الكتاب بالعربي والإنجليزي، العب ألعاباً ممتعة، وحلّ اختباراً لكل وحدة حتى تكون جاهزاً للاختبار النهائي 🌟</p>
+   <div class="namebox"><input id="nm" placeholder="اكتب اسمك هنا" value="${esc(S.name)}" maxlength="24" aria-label="اسمك"><button class="cta sun" onclick="S.name=document.getElementById('nm').value.trim();save();renderHome()">احفظ اسمي<span class="ic">✏️</span></button></div>
+   <div class="progress-card"><span style="font-size:28px">⭐</span><div style="flex:1"><div style="font-weight:700;font-size:15px">تقدّمك: ${totalStars()} من ${maxStars()} نجمة</div><div class="bar"><i style="transform:scaleX(${pct/100})"></i></div></div></div>
+  </div>
+  <div class="mascot-wrap"><div class="bubble">${hi}<br><span style="font-weight:500">أنا توتي، رفيقك في الرحلة!</span></div>${mascot}</div>
+ </section>
+ <div class="sec-title"><h2>رحلة التعلّم</h2><span class="en">Your learning path</span></div>
+ <div class="path">
+  ${UNITS.map((u,i)=>{const gd=(S.games[u.id]||[]).length;return `
+  <button class="ucard reveal" style="--u:${u.color};grid-column:span ${[5,7,7,5,5,7,12][i]||6}" onclick="location.hash='#/u/${u.id}'">
+   <div class="core"><div class="top"><div class="emo">${u.emoji}</div><span class="num">${u.num==="W"?"Welcome":u.num.startsWith("LC")?"Learning Club":"Unit "+u.num}</span></div>
+   <h3 class="en" style="text-align:right">${u.title}</h3><div class="sub">${u.ar} • ${u.pages}</div>
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">${starsHTML(starsFor(S.quiz[u.id]||0))}<small style="color:var(--ink2)">🎮 ${gd}/${u.games.length}</small></div></div>
+  </button>`}).join("")}
+  <button class="ucard final reveal" onclick="location.hash='#/final'"><div class="core"><div class="emo">🏆</div><div style="flex:1"><span class="num">Final exam</span><h3>الاختبار النهائي – Final Test</h3><div class="sub">${FINAL.length} سؤالاً من كل الوحدات: مفردات، قواعد، قراءة، أصوات، ومحادثة</div></div>${starsHTML(starsFor(S.final||0))}</div></button>
+ </div>
+ <p class="foot">نصيحة: اضغط 🔊 لتسمع النطق • اقلب البطاقات لترى المعنى • كل لعبة تنهيها تعطيك نجمة ⭐</p>`;
+ observe();window.scrollTo({top:0});
+}
+
+/* ============ UNIT ============ */
+function renderUnit(u,tab){
+ const unitLabel=u.num==="W"?"Welcome":u.num.startsWith("LC")?"Bo's Learning Club / Language booster":"Unit "+u.num;
+ $("#app").innerHTML=`
+ <button class="back" onclick="location.hash='#/'">→ الرئيسية</button>
+ <header class="uhead" style="--u:${u.color}"><div class="core"><div class="emo">${u.emoji}</div><div><div class="tag">${unitLabel} • ${u.pages}</div><h1><span class="en">${u.title}</span> — ${u.ar}</h1><p>${u.intro}</p></div></div></header>
+ <div class="tabs" style="--u:${u.color}" role="tablist">
+  ${[["learn","📘 الشرح"],["games","🎮 الألعاب"],["quiz","📝 الاختبار"]].map(([k,l])=>`<button class="tab ${tab===k?"on":""}" role="tab" onclick="location.hash='#/u/${u.id}/${k}'">${l}</button>`).join("")}
+ </div>
+ <div id="tabBody" style="--u:${u.color}"></div>`;
+ const b=$("#tabBody");
+ if(tab==="games") b.innerHTML=gamesHTML(u);
+ else if(tab==="quiz") b.innerHTML=quizIntroHTML(u);
+ else b.innerHTML=learnHTML(u);
+ observe();window.scrollTo({top:0});
+}
+
+function learnHTML(u){
+ let h="";
+ u.vocab.forEach(g=>{h+=`<section class="block reveal"><h3>🗣️ ${g.g}</h3><div class="vhint">اضغط البطاقة لتسمع الكلمة وترى معناها بالعربي</div><div class="vgrid">
+  ${g.items.map(([e,w,a])=>`<div class="vcard" onclick="this.classList.toggle('flip');say(this.dataset.w)" data-w="${esc(w)}" tabindex="0" role="button" onkeydown="if(event.key==='Enter')this.click()"><div class="in"><div class="vface f"><div class="e">${e}</div><div class="w en">${w}</div></div><div class="vface b"><div class="e">${e}</div><div class="ar">${a}</div><div class="w en" style="font-size:14px;opacity:.7">${w}</div></div></div></div>`).join("")}
+ </div></section>`});
+ u.grammar.forEach((g,gi)=>{
+  h+=`<section class="block reveal"><h3>📐 <span class="en">${g.t}</span> — ${g.tar} <span class="tag book">📗 الكتاب ${g.page}</span></h3>
+  <div class="bi"><div class="arx"><h4>بالعربي</h4>${g.ar}</div><div class="enx en"><h4>In English</h4>${g.en}</div></div>`;
+  if(g.clocks) h+=`<div class="ggrid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))">${g.clocks.map(([hh,mm,t])=>`<div style="text-align:center;background:var(--bg);border-radius:20px;padding:10px">${clockSVG(hh,mm)}<div class="en" style="font-weight:700">${t}</div>${sayBtn(t)}</div>`).join("")}</div>`;
+  if(g.table) h+=`<div class="mini"><div class="q">📗 جدول لوتي يوم الأحد (من الكتاب ص 18) — <span class="en">Lottie's timetable</span></div><div class="scroll"><table class="tt"><tr><th>Time</th><th>Sunday</th></tr>${[["7.30","Maths"],["8.15","Science"],["9.00","break"],["9.15","Arabic"],["10.00","P.E."],["10.45","break"],["11.00","English"],["11.45","ICT"],["12.30","break"],["12.45","Social Studies"],["1.30","School finishes"],["4.30","swimming lesson"]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table></div></div>`;
+  if(g.ex) h+=`<div class="ex-list">${g.ex.map(([e,a])=>`<div class="ex">${sayBtn(e)}<div style="flex:1"><div class="en">${e}</div><div class="ar2">${a}</div></div></div>`).join("")}</div>`;
+  if(g.mini){const id=`m-${u.id}-${gi}`;h+=`<div class="mini" id="${id}"><div class="q">✋ جرّب بنفسك: <span class="en">${g.mini.q}</span></div><div class="opts">${shuffle(g.mini.o).map(o=>`<button class="opt en" onclick="miniAns('${id}',this,${JSON.stringify(o===g.mini.a)},'${esc(g.mini.ex).replace(/'/g,"\\'")}')">${o}</button>`).join("")}</div><div class="fb"></div></div>`}
+  h+=`</section>`});
+ h+=`<div class="block reveal" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><b style="font-size:20px">خلصت الشرح؟ 🎉</b><div style="color:var(--ink2)">الآن العب الألعاب ثم حلّ الاختبار.</div></div><button class="cta" onclick="location.hash='#/u/${u.id}/games'">إلى الألعاب<span class="ic">🎮</span></button></div>`;
+ return h;
+}
+function miniAns(id,btn,ok,ex){const box=document.getElementById(id);if(box.dataset.done)return;
+ if(ok){box.dataset.done=1;btn.classList.add("ok");box.querySelector(".fb").innerHTML="✅ ممتاز! "+ex;beep(true)}
+ else{btn.classList.add("no");box.querySelector(".fb").innerHTML="🤔 حاول مرة ثانية. "+ex;beep(false);setTimeout(()=>btn.classList.remove("no"),500)}}
+
+function gamesHTML(u){
+ const done=S.games[u.id]||[];
+ const typeAr={match:"لعبة ذاكرة",pick:"اختر الإجابة",sort:"صنّف الكلمات",build:"رتّب الجملة"};
+ return `<div class="ggrid">${u.games.map((g,i)=>`<button class="gcard reveal" style="--u:${u.color}" onclick="openGame('${u.id}',${i})"><div class="core">${done.includes(i)?`<span class="done">✓ أنجزتها ⭐</span>`:""}<div class="e">${g.e}</div><b>${g.tar}</b><small class="en" style="text-align:right">${g.t}</small><small>${typeAr[g.type]}</small></div></button>`).join("")}</div>
+ <div class="block reveal" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:space-between"><div><b style="font-size:20px">جاهز للاختبار؟ 📝</b><div style="color:var(--ink2)">اختبار قصير على الوحدة كلها.</div></div><button class="cta" onclick="location.hash='#/u/${u.id}/quiz'">ابدأ الاختبار<span class="ic">📝</span></button></div>`;
+}
+
+/* ============ OVERLAY ============ */
+function openOv(html,color){const r=$("#ovRoot");r.innerHTML=`<div class="ov" id="ov" style="--u:${color||"#D6F1EB"}" onclick="if(event.target.id==='ov')closeOv()"><div class="panel" role="dialog" aria-modal="true">${html}</div></div>`;requestAnimationFrame(()=>$("#ov").classList.add("show"));document.body.style.overflow="hidden"}
+function closeOv(instant){const o=$("#ov");document.body.style.overflow="";try{speechSynthesis.cancel()}catch(e){}if(!o)return;if(instant){o.remove();return}o.classList.remove("show");setTimeout(()=>o.remove(),450)}
+function head(title,extra){return `<div class="phead"><h2>${title}</h2><div style="display:flex;gap:8px;align-items:center">${extra||""}<button class="iconbtn" onclick="closeOv()" aria-label="إغلاق">✖</button></div></div>`}
+function markGame(uid,i){S.games[uid]=S.games[uid]||[];if(!S.games[uid].includes(i))S.games[uid].push(i);save()}
+function winScreen(u,i,msg){confetti();beep(true);markGame(u.id,i);
+ $(".panel").innerHTML=head("🎉 أحسنت!")+`<div class="result"><div class="big">🏅</div><h2>${msg}</h2><p>حصلت على نجمة ⭐</p><div class="pfoot" style="justify-content:center"><button class="cta soft" onclick="openGame('${u.id}',${i})">العب مرة ثانية<span class="ic">🔁</span></button><button class="cta" onclick="closeOv();renderUnit(UNITS.find(x=>x.id==='${u.id}'),'games')">لعبة أخرى<span class="ic">🎮</span></button></div></div>`}
+
+function openGame(uid,i){const u=UNITS.find(x=>x.id===uid),g=u.games[i];
+ ({pick:gPick,match:gMatch,sort:gSort,build:gBuild})[g.type](u,g,i)}
+
+/* ---- pick game ---- */
+function gPick(u,g,gi){let items=shuffle(g.items),k=0,hearts=3,score=0;
+ openOv("",u.color);
+ function draw(){if(k>=items.length){winScreen(u,gi,`جاوبت ${score} من ${items.length} صح!`);return}
+  const it=items[k];let prompt="";
+  if(it.clock) prompt=clockSVG(it.clock[0],it.clock[1])+`<div style="font-size:18px"><span class="en">What time is it?</span> — كم الساعة؟</div>`;
+  else if(it.shape) prompt=shapeSVG(it.shape)+`<div style="font-size:18px"><span class="en">What shape is it?</span> — ما الشكل؟</div>`;
+  else if(it.say&&!it.p) prompt=`<button class="say" style="width:96px;height:96px;font-size:44px" onclick="say('${esc(it.say)}')">🔊</button><div style="font-size:17px">اضغط واسمع ثم اختر</div>`;
+  else prompt=`<div class="big" style="font-size:40px;line-height:1.4">${it.p}</div>`;
+  $(".panel").innerHTML=head(`${g.e} ${g.tar}`,`<span class="hearts">${"❤️".repeat(hearts)}${"🤍".repeat(3-hearts)}</span>`)+
+   `<div class="gbar"><i style="transform:scaleX(${k/items.length})"></i></div><div class="prompt">${prompt}</div>
+   <div class="choices">${shuffle(it.o).map(o=>`<button class="choice en" data-o="${esc(o)}">${o}</button>`).join("")}</div><div id="gfb"></div>`;
+  if(it.say&&!it.p) setTimeout(()=>say(it.say),350);
+  document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
+   const ok=b.dataset.o===it.a;document.querySelectorAll(".choice").forEach(x=>x.disabled=true);
+   if(ok){b.classList.add("ok");score++;beep(true);say(it.a);$("#gfb").innerHTML=`<div class="explain good">✅ ${["رائع!","ممتاز!","أحسنت!","برافو!"][k%4]}</div>`;k++;setTimeout(draw,900)}
+   else{b.classList.add("no");hearts--;beep(false);document.querySelectorAll(".choice").forEach(x=>{if(x.dataset.o===it.a)x.classList.add("ok")});
+    $("#gfb").innerHTML=`<div class="explain oops">الإجابة الصحيحة: <b class="en">${it.a}</b></div>`;
+    if(hearts<=0){setTimeout(()=>{$(".panel").innerHTML=head("😅 انتهت القلوب")+`<div class="result"><div class="big">🐢</div><h2>لا بأس! التعلّم يحتاج محاولات</h2><p>راجع الشرح ثم جرّب مرة ثانية.</p><div class="pfoot" style="justify-content:center"><button class="cta" onclick="openGame('${u.id}',${gi})">حاول مرة ثانية<span class="ic">🔁</span></button></div></div>`},1300)}
+    else{k++;setTimeout(draw,1500)}}})}
+ draw()}
+
+/* ---- memory match ---- */
+function gMatch(u,g,gi){const cards=shuffle(g.pairs.flatMap((p,i)=>[{i,t:p[0]},{i,t:p[1]}]));let open=[],got=0,moves=0,lock=false;
+ openOv(head(`${g.e} ${g.tar}`,`<span class="pill" id="mv">🔄 0</span>`)+`<p style="margin:0 0 12px;color:var(--ink2)">اقلب بطاقتين. إذا كانتا متطابقتين تبقيان مفتوحتين!</p><div class="mgrid">${cards.map((c,k)=>{const isEmo=/\p{Extended_Pictographic}/u.test(c.t)&&c.t.length<=4;return `<button class="mc" data-k="${k}" aria-label="بطاقة"><div class="in"><div class="fa fr">❔</div><div class="fa bk en">${isEmo?`<span class="emo2">${c.t}</span>`:c.t}</div></div></button>`}).join("")}</div>`,u.color);
+ document.querySelectorAll(".mc").forEach(el=>el.onclick=()=>{if(lock||el.classList.contains("open")||el.classList.contains("got"))return;const c=cards[+el.dataset.k];el.classList.add("open");if(!/\p{Extended_Pictographic}/u.test(c.t))say(c.t);open.push(el);
+  if(open.length===2){moves++;$("#mv").textContent="🔄 "+moves;const[a,b]=open;const ca=cards[+a.dataset.k],cb=cards[+b.dataset.k];
+   if(ca.i===cb.i){a.classList.add("got");b.classList.add("got");open=[];got++;beep(true);if(got===g.pairs.length)setTimeout(()=>winScreen(u,gi,`أنهيت اللعبة في ${moves} محاولة!`),700)}
+   else{lock=true;beep(false);setTimeout(()=>{a.classList.remove("open");b.classList.remove("open");open=[];lock=false},900)}}})}
+
+/* ---- sort ---- */
+function gSort(u,g,gi){const items=shuffle(g.items);let k=0,mist=0;const placed={};g.buckets.forEach(b=>placed[b[0]]=[]);
+ openOv("",u.color);
+ function draw(){if(k>=items.length){winScreen(u,gi,mist===0?"تصنيف كامل بدون أخطاء! 🌟":`أنهيت التصنيف مع ${mist} ${mist===1?"خطأ":"أخطاء"}`);return}
+  const it=items[k];
+  $(".panel").innerHTML=head(`${g.e} ${g.tar}`)+`<div class="gbar"><i style="transform:scaleX(${k/items.length})"></i></div>
+  <div class="prompt" style="min-height:110px"><div style="font-size:16px">إلى أين تذهب هذه الكلمة؟</div><div style="display:flex;gap:10px;align-items:center"><span class="sitem en">${it[0]}</span>${sayBtn(it[0])}</div></div>
+  <div class="buckets" style="grid-template-columns:repeat(${g.buckets.length},1fr)">${g.buckets.map(b=>`<button class="bucket" data-b="${b[0]}"><span class="be">${b[2]}</span><span class="en">${b[1]}</span><span class="cnt en">${placed[b[0]].map(x=>`<span>${x}</span>`).join("")}</span></button>`).join("")}</div>`;
+  say(it[0]);
+  document.querySelectorAll(".bucket").forEach(bt=>bt.onclick=()=>{document.querySelectorAll(".bucket").forEach(x=>x.disabled=true);
+   const right=document.querySelector(`.bucket[data-b="${it[1]}"]`);
+   if(bt.dataset.b===it[1]){bt.classList.add("flash");beep(true)}else{bt.classList.add("wrong");right.classList.add("flash");mist++;beep(false)}
+   placed[it[1]].push(it[0]);k++;setTimeout(draw,bt.dataset.b===it[1]?650:1300)})}
+ draw()}
+
+/* ---- sentence builder ---- */
+function gBuild(u,g,gi){const items=shuffle(g.items);let k=0;
+ openOv("",u.color);
+ function draw(){if(k>=items.length){winScreen(u,gi,"رتّبت كل الجمل! 🧱");return}
+  const [sent,ar]=items[k];const words=sent.split(" ");let order=shuffle(words.map((w,i)=>({w,i})));
+  if(order.every((o,i)=>o.i===i)&&words.length>1)order=order.reverse();
+  let picked=[];
+  $(".panel").innerHTML=head(`${g.e} ${g.tar}`)+`<div class="gbar"><i style="transform:scaleX(${k/items.length})"></i></div>
+   <div class="prompt" style="min-height:80px;font-size:20px">🗨️ ${ar}</div>
+   <div class="slot" id="slot" aria-label="الجملة"></div><div class="chips" id="chips">${order.map((o,j)=>`<button class="chip en" data-j="${j}">${o.w}</button>`).join("")}</div>
+   <div class="pfoot"><button class="cta soft" id="hint">💡 مساعدة</button><button class="cta" id="chk">تحقّق<span class="ic">✔</span></button></div>`;
+  const slot=$("#slot");
+  function refresh(){slot.innerHTML=picked.map((j,p)=>`<button class="chip en" data-p="${p}">${order[j].w}</button>`).join("");document.querySelectorAll("#chips .chip").forEach(c=>c.classList.toggle("used",picked.includes(+c.dataset.j)));
+   slot.querySelectorAll(".chip").forEach(c=>c.onclick=()=>{picked.splice(+c.dataset.p,1);slot.classList.remove("no");refresh()})}
+  document.querySelectorAll("#chips .chip").forEach(c=>c.onclick=()=>{const j=+c.dataset.j;if(picked.includes(j))return;picked.push(j);refresh()});
+  $("#hint").onclick=()=>{picked=[];const first=order.findIndex(o=>o.i===0);picked.push(first);refresh();say(sent)};
+  $("#chk").onclick=()=>{const built=picked.map(j=>order[j].w).join(" ");
+   if(built===sent){slot.classList.add("ok");beep(true);say(sent);k++;setTimeout(draw,1300)}
+   else{slot.classList.remove("no");void slot.offsetWidth;slot.classList.add("no");beep(false)}};
+  refresh()}
+ draw()}
+
+/* ============ QUIZ ENGINE ============ */
+function quizIntroHTML(u){const best=S.quiz[u.id]||0;
+ return `<section class="block reveal" style="text-align:center"><div style="font-size:64px">📝</div><h3 style="justify-content:center">اختبار <span class="en">${u.title}</span></h3>
+ <p style="color:var(--ink2)">${u.quiz.length} سؤالاً. بعد كل سؤال سترى الشرح. أفضل نتيجة لك: <b>${best}%</b> ${starsHTML(starsFor(best))}</p>
+ <p style="color:var(--ink2);font-size:15px">📗 الأسئلة التي عليها هذه العلامة مأخوذة من تمارين الكتاب.</p>
+ <button class="cta" onclick="startQuiz('${u.id}')">ابدأ الاختبار<span class="ic">🚀</span></button></section>`}
+function startQuiz(uid){const u=UNITS.find(x=>x.id===uid);runQuiz(shuffle(u.quiz),u.color,`📝 ${u.ar}`,p=>{if(p>(S.quiz[uid]||0)){S.quiz[uid]=p;save()}},()=>renderUnit(u,"quiz"))}
+function runQuiz(qs,color,title,onDone,onClose,isFinal){let k=0,score=0;const wrong=[];
+ openOv("",color);
+ function draw(){if(k>=qs.length){finish();return}const q=qs[k];
+  let extra="";
+  if(q.clock) extra=clockSVG(q.clock[0],q.clock[1]);
+  if(q.read) extra=`<div style="text-align:left;font-weight:500;font-size:17px;background:var(--card);border-radius:16px;padding:12px 14px;line-height:1.7" class="en">📖 ${READING}</div>`;
+  $(".panel").innerHTML=head(title,`<span class="pill">${k+1} / ${qs.length}</span>`)+`<div class="gbar"><i style="transform:scaleX(${k/qs.length})"></i></div>
+   ${q.s?`<div class="tag" style="display:inline-block;margin-bottom:8px">${q.s}</div>`:""}
+   <div class="prompt" style="font-size:21px">${extra}<div class="en" style="display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap">${q.q} ${sayBtn(q.q)}</div></div>
+   <div class="choices">${shuffle(q.o).map(o=>`<button class="choice en" data-o="${esc(o)}">${o}</button>`).join("")}</div><div id="qfb"></div>`;
+  document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{const ok=b.dataset.o===q.a;document.querySelectorAll(".choice").forEach(x=>{x.disabled=true;if(x.dataset.o===q.a)x.classList.add("ok")});
+   if(ok){score++;beep(true)}else{b.classList.add("no");beep(false);wrong.push(q)}
+   $("#qfb").innerHTML=`<div class="explain ${ok?"good":"oops"}">${ok?"✅ صح! ":"❌ الإجابة الصحيحة: <b class='en'>"+q.a+"</b><br>"}💡 ${q.ex}</div><div class="pfoot" style="justify-content:flex-end"><button class="cta" id="nx">${k+1<qs.length?"السؤال التالي":"النتيجة"}<span class="ic">←</span></button></div>`;
+   $("#nx").onclick=()=>{k++;draw()};$("#nx").focus()})}
+ function finish(){const p=Math.round(score/qs.length*100),st=starsFor(p);onDone(p);if(st>=2)confetti();
+  const msg=p>=90?"ممتاز! أنت بطل 🏆":p>=70?"جيد جداً! 👏":p>=50?"جيد، راجع الأخطاء 💪":"لا بأس، راجع الشرح وجرّب مرة ثانية 🐢";
+  const cert=(isFinal&&p>=70)?`<div class="cert"><div class="core"><div style="font-size:40px">🎓</div><h3>شهادة إتمام – Certificate</h3><p>تشهد مغامرة الإنجليزي أن</p><div class="nm">${esc(S.name||"البطل / البطلة")}</div><p>أنهى/أنهت اختبار الصف الرابع بنتيجة <b>${p}%</b></p>${starsHTML(st)}</div></div>`:"";
+  $(".panel").innerHTML=head("النتيجة")+`<div class="result"><div class="big">${st===3?"🏆":st===2?"🥈":st===1?"🌱":"🐢"}</div><h2>${score} / ${qs.length} (${p}%)</h2>${starsHTML(st)}<p style="font-weight:700">${msg}</p>${cert}
+   ${wrong.length?`<div class="review"><b>راجع هذه الأسئلة:</b>${wrong.map(q=>`<div><span class="en">${stripTags(q.q)}</span><br>✅ <b class="en">${q.a}</b> — ${q.ex}</div>`).join("")}</div>`:""}
+   <div class="pfoot" style="justify-content:center"><button class="cta soft" id="again">أعد الاختبار<span class="ic">🔁</span></button><button class="cta" id="cl">تم<span class="ic">✔</span></button></div></div>`;
+  $("#again").onclick=()=>runQuiz(shuffle(qs),color,title,onDone,onClose,isFinal);$("#cl").onclick=()=>{closeOv();onClose()}}
+ draw()}
+
+/* ============ FINAL ============ */
+function renderFinal(){const best=S.final||0;
+ $("#app").innerHTML=`<button class="back" onclick="location.hash='#/'">→ الرئيسية</button>
+ <header class="uhead" style="--u:#FFE08A"><div class="core"><div class="emo">🏆</div><div><div class="tag">Final Test • Units W–4 + Learning Clubs</div><h1>الاختبار النهائي — <span class="en">Final Test</span></h1><p>اختبار شامل يشبه أسئلة اختبار <span class="en">A1 Movers</span> في الكتاب: مفردات، قواعد، قراءة، أصوات، ومحادثة.</p></div></div></header>
+ <section class="block reveal"><h3>📋 قبل أن تبدأ</h3>
+  <div class="bi"><div class="arx"><h4>نصائح الاختبار من الكتاب</h4>• اقرأ كل خيار بتمعّن وقُله في رأسك لترى أيّها يبدو صحيحاً.<br>• في القراءة: اقرأ النص كاملاً قبل أن تجيب، لأن الجمل أحياناً متشابهة جداً!<br>• انظر إلى الصورة جيداً وفكّر في الكلمات التي قد تسمعها.</div>
+  <div class="enx en"><h4>Checklist</h4>✔ Countries & nationalities<br>✔ Time + present simple + how often<br>✔ There is / are, some / any, a few / a little<br>✔ Comparatives & superlatives<br>✔ Present continuous, must / mustn't, should</div></div>
+  <div style="text-align:center;margin-top:18px"><p style="color:var(--ink2)">${FINAL.length} سؤالاً • أفضل نتيجة: <b>${best}%</b> ${starsHTML(starsFor(best))}</p><button class="cta sun" onclick="startFinal()">ابدأ الاختبار النهائي<span class="ic">🚀</span></button><p style="font-size:14px;color:var(--ink2);margin-top:10px">إذا حصلت على 70% أو أكثر ستحصل على شهادة 🎓</p></div>
+ </section>
+ <section class="block reveal"><h3>🗺️ هل راجعت كل الوحدات؟</h3><div class="ggrid">${UNITS.map(u=>`<button class="gcard" style="--u:${u.color}" onclick="location.hash='#/u/${u.id}'"><div class="core"><div class="e">${u.emoji}</div><b class="en" style="text-align:right">${u.title}</b><small>${u.ar}</small>${starsHTML(starsFor(S.quiz[u.id]||0))}</div></button>`).join("")}</div></section>`;
+ observe();window.scrollTo({top:0})}
+function startFinal(){const order=["Vocabulary","Grammar","Reading","Phonics","Everyday English"];const qs=[];order.forEach(s=>{const part=FINAL.filter(q=>q.s===s);qs.push(...(s==="Reading"?part:shuffle(part)))});
+ runQuiz(qs,"#FFE08A","🏆 الاختبار النهائي",p=>{if(p>(S.final||0)){S.final=p;save()}},renderFinal,true)}
+
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeOv()});
+$("#sndBtn").textContent=S.sound?"🔊":"🔈";
+if(document.documentElement.getAttribute("data-theme")==="dark")$("#themeBtn").textContent="☀️";
+updateStars();route();
+</script>
+</body>
+</html>
